@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+CURRENT_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
 
+
+APPEND_SLASH = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -25,6 +28,11 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
+
+ADMINS = (
+    ('Sebastien Arnold', 'seba-1511@hotmail.com'),
+    # ('Your Name', 'your_email@example.com'),
+)
 
 
 # Application definition
@@ -45,12 +53,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 )
 
 ROOT_URLCONF = 'python_core.urls'
 
 WSGI_APPLICATION = 'python_core.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -62,10 +70,15 @@ DATABASES = {
     }
 }
 
+# URLs
+CORS_ORIGIN_ALLOW_ALL = False
+
+ROOT_URLCONF = 'python_core.urls'
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-ch'
 
 TIME_ZONE = 'UTC'
 
@@ -74,6 +87,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 
 # Static files (CSS, JavaScript, Images)
