@@ -8,43 +8,37 @@ from django.core.serializers import serialize
 from users.models import Users
 
 
+def isLoggedIn(request):
+    email = request.COOKIES.get('email')
+    token = request.COOKIES.get('token')
+    if email and token:
+        user = Users.objects.filter(email=email).first()
+        print user.email, token
+        return user.token == token
+    return False
+
+
+
 def login(request):
-	req = request.GET
-	email = req.get('email')
-	password = req.get('password')
-	user = Users.objects.filter(email=email).first()
-	if user and user.password == str(hash(password)):
-		token = user.token = hash(strftime("%H:%M:%S"))
-		return HttpResponse('{email: ' + email + ', token: \'' + str(token) + '\', success: 1}')
-	else:
-		return HttpResponse('{success: 0}');
+    req = request.GET
+    email = req.get('email')
+    password = req.get('password')
+    user = Users.objects.filter(email=email).first()
+    if user and user.password == str(hash(password)):
+        token = user.token = str(hash(strftime("%H:%M:%S")))
+        user.save()
+        response = HttpResponse(
+            '{email: \'' + email + '\', token: \'' + str(token) + '\', success: 1} ')
+        response.set_cookie('email', email)
+        response.set_cookie('token', token)
+    else:
+        response = HttpResponse('{success: 0}')
+    return response
 
 
 def delete(request):
-    usersId = request.GET.get('id')
-    if usersId:
-        # Check if logged in !
-        users = Users.objects.filter(id=usersId)
-        users.delete()
-        return HttpResponse('1')
-    else:
-        return HttpResponse('0')
+    return HttpResponse('Not implemented yet.')
 
 
 def save(request):
-    # Check if logged in !
-    req = request.GET
-    id = req.get('id')
-    title = req.get('title')
-    content = req.get('content')
-    mag = req.get('mag')
-    if id:
-        users = Users.objects.filter(id=id)
-        users = users.first()
-    else:
-        users = Users()
-    users.title = title
-    users.content = content
-    users.mag = mag
-    users.save()
-    return HttpResponse('1')
+    return HttpResponse('Not implemented yet.')
