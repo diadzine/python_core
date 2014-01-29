@@ -1,5 +1,7 @@
 #-*- coding: utf-8 -*-
 
+from time import strftime
+
 from django.http import HttpResponse, Http404
 from django.core.serializers import serialize
 
@@ -10,6 +12,12 @@ def login(request):
 	req = request.GET
 	email = req.get('email')
 	password = req.get('password')
+	user = Users.objects.filter(email=email).first()
+	if user and user.password == str(hash(password)):
+		token = user.token = hash(strftime("%H:%M:%S"))
+		return HttpResponse('{email: ' + email + ', token: \'' + str(token) + '\', success: 1}')
+	else:
+		return HttpResponse('{success: 0}');
 
 
 def delete(request):
