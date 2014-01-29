@@ -44,7 +44,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news'
+    'django_bcrypt',
+    'news',
+    'users'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,6 +62,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'python_core.urls'
 
 WSGI_APPLICATION = 'python_core.wsgi.application'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
