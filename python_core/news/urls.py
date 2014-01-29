@@ -17,9 +17,15 @@ urlpatterns = patterns(
     ),
 
     url(
-        regex=r'^latest$',
-        view='latest_entries',
-        name='basic_urls'
+    regex=r'^save$',
+    view='save',
+    name='basic_urls',
+    ),
+
+    url(
+    regex=r'^delete$',
+    view='delete',
+    name='basic_urls',
     ),
 
 )
