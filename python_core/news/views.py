@@ -29,5 +29,18 @@ def delete(request):
 
 
 def save():
-    # Check if logged in !
-    return True
+    id = request.POST.get('id')
+    title = request.POST.get('title')
+    content = request.POST.get('content')
+    mag = request.POST.get('mag')
+    if id:
+        news = News.objects.filter(id=id)
+    else:
+        news = News()
+    news.title = title
+    news.content = content
+    news.mag = mag
+    if news.save():
+        return HttpResponse('1')
+    else:
+        return HttpResponse('0')
