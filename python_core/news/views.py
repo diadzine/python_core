@@ -28,19 +28,20 @@ def delete(request):
         return HttpResponse('0')
 
 
-def save():
-    id = request.POST.get('id')
-    title = request.POST.get('title')
-    content = request.POST.get('content')
-    mag = request.POST.get('mag')
+def save(request):
+    # Check if logged in !
+    req = request.GET
+    id = req.get('id')
+    title = req.get('title')
+    content = req.get('content')
+    mag = req.get('mag')
     if id:
         news = News.objects.filter(id=id)
+        news = news.first()
     else:
         news = News()
     news.title = title
     news.content = content
     news.mag = mag
-    if news.save():
-        return HttpResponse('1')
-    else:
-        return HttpResponse('0')
+    news.save()
+    return HttpResponse('1')
