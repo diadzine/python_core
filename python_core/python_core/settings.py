@@ -27,7 +27,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*.tooski.ch', '*.webfaction.com']
 
 ADMINS = (
     ('Sebastien Arnold', 'seba-1511@hotmail.com'),
@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_bcrypt',
+    # 'django_bcrypt',
     'news',
     'users'
 )
@@ -56,7 +56,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
 )
 
 ROOT_URLCONF = 'python_core.urls'
