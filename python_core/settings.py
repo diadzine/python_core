@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*.tooski.ch', '*.webfaction.com']
 ADMINS = (
     ('Sebastien Arnold', 'seba-1511@hotmail.com'),
     # ('Your Name', 'your_email@example.com'),
-)
+    )
 
 
 # Application definition
@@ -49,7 +49,7 @@ INSTALLED_APPS = (
     # Custom Apps
     'news',
     'users'
-)
+    )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -58,8 +58,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
-)
+    'corsheaders.middleware.CorsMiddleware',
+    )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'python_core.urls'
 
@@ -70,10 +72,10 @@ WSGI_APPLICATION = 'python_core.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite'),
-    }
+'default': {
+'ENGINE': 'django.db.backends.sqlite3',
+'NAME': os.path.join(BASE_DIR, 'db.sqlite'),
+}
 }
 
 # URLs
