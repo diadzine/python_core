@@ -15,7 +15,7 @@ def home(request):
     else:
         news = News.objects.all().order_by('date').reverse()[:20]
 
-    return HttpResponse('JSON_CALLBACK(' + serialize('json', news) + ')')
+    return HttpResponse(serialize('json', news))
 
 
 def delete(request):
