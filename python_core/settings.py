@@ -44,7 +44,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django_bcrypt',
+    #Additionnal Apps
+    'corsheaders',
+    # Custom Apps
     'news',
     'users'
 )
