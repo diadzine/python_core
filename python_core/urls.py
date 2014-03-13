@@ -26,6 +26,6 @@ urlpatterns = patterns(
 
     url(
         r'^pages/',
-        include('users.urls')
+        include('pages.urls')
     ),
 )

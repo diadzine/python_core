@@ -48,7 +48,8 @@ INSTALLED_APPS = (
     'corsheaders',
     # Custom Apps
     'news',
-    'users'
+    'users',
+    'pages',
     )
 
 MIDDLEWARE_CLASSES = (
