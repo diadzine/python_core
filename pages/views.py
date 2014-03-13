@@ -13,7 +13,7 @@ def get(request):
         pages = Pages.objects.filter(id=pagesId)
 
     else:
-        pages = Pages.objects.all().order_by('date').reverse()[:20]
+        pages = Pages.objects.all().order_by('date').reverse()
 
     return HttpResponse(serialize('json', pages))
 
