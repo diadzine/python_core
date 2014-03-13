@@ -11,13 +11,13 @@ urlpatterns = patterns(
     ),
 
     url(
-    regex=r'^bloggers$',
+    regex=r'^bloggers/$',
     view='bloggers',
     name='basic_urls',
     ),
 
     url(
-    regex=r'^posts$',
+    regex=r'^posts/$',
     view='posts',
     name='basic_urls',
     ),

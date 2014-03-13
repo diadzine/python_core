@@ -11,19 +11,19 @@ urlpatterns = patterns(
     ),
 
     url(
-    regex=r'^get$',
+    regex=r'^news/$',
     view='home',
     name='basic_urls',
     ),
 
     url(
-    regex=r'^save$',
+    regex=r'^save/$',
     view='save',
     name='basic_urls',
     ),
 
     url(
-    regex=r'^delete$',
+    regex=r'^delete/$',
     view='delete',
     name='basic_urls',
     ),
