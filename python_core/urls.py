@@ -19,9 +19,13 @@ urlpatterns = patterns(
         include('news.urls')
     ),
 
-
     url(
         r'^users/',
+        include('users.urls')
+    ),
+
+    url(
+        r'^pages/',
         include('users.urls')
     ),
 )
