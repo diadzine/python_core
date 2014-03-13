@@ -3,16 +3,28 @@
 from django.http import HttpResponse, Http404
 from django.core.serializers import serialize
 
-from news.models import News
+from blogs.models import Bloggers, BlogPosts
 from users.views import isLoggedIn
 
 
-def home(request):
+def bloggers(request):
     if request.GET.get('id'):
-        newsId = request.GET.get('id')
-        news = News.objects.filter(id=newsId)
+        blogsId = request.GET.get('id')
+        blogs = News.objects.filter(id=blogsId)
 
     else:
-        news = News.objects.all().order_by('date').reverse()[:20]
+        blogs = News.objects.all().order_by('date').reverse()[:20]
 
-    return HttpResponse(serialize('json', news))
+    return HttpResponse(serialize('json', blogs))
+
+
+def posts(request):
+	# Handle blogId and postId case.
+    if request.GET.get('id'):
+        postId = request.GET.get('id')
+        post = News.objects.filter(id=postId)
+
+    else:
+        post = News.objects.all().order_by('date').reverse()[:20]
+
+    return HttpResponse(serialize('json', post))

@@ -4,24 +4,26 @@ from django.db import models
 # Create your models here.
 
 
-class Blogs(models.Model):
-    title = models.CharField(max_length=255)
-    author = models.TextField(null=True)
-    content = models.TextField(null=True)
-    mag = models.SmallIntegerField(null=True)
+class Bloggers(models.Model):
+	# Note: Ad and sponsors contains many addresses which are separated by |.
+    name = models.CharField(max_length=510)
+    biography = models.TextField(null=True)
+    linkResults = models.TextField(null=True)
+    profilePic = models.TextField(null=True)
+    sponsors = models.TextField(null=True)
+    ad = models.TextField(null=True)
     date = models.DateTimeField(
         auto_now_add=True,
         auto_now=False
     )
 
     def __unicode__(self):
-        return u'%s' % self.title
+        return u'%s' % self.name
 
-class Posts(models.Model):
+class BlogPosts(models.Model):
     title = models.CharField(max_length=255)
-    author = models.TextField(null=True)
     content = models.TextField(null=True)
-    mag = models.SmallIntegerField(null=True)
+    blogId = models.SmallIntegerField(null=True)
     date = models.DateTimeField(
         auto_now_add=True,
         auto_now=False
