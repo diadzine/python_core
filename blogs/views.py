@@ -13,7 +13,7 @@ def bloggers(request):
         blogs = Bloggers.objects.filter(id=blogsId)
 
     else:
-        blogs = Bloggers.objects.all().order_by('date').reverse()[:20]
+        blogs = Bloggers.objects.all().order_by('date').reverse()
 
     return HttpResponse(serialize('json', blogs))
 
