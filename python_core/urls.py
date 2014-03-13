@@ -28,4 +28,9 @@ urlpatterns = patterns(
         r'^pages/',
         include('pages.urls')
     ),
+
+    url(
+        r'^blogs/',
+        include('blogs.urls')
+    ),
 )
