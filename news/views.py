@@ -38,7 +38,6 @@ def save(request):
         content = req.get('content')
         mag = req.get('mag')
         signature = request.COOKIES.get('signature')
-        print title, content, id, mag, signature
         if not int(id) == 0:
             news = News.objects.filter(id=id).first()
         else:
