@@ -9,6 +9,7 @@ from users.models import Users
 
 
 def isLoggedIn(request):
+    return True
     email = request.COOKIES.get('email')
     token = request.COOKIES.get('token')
     if email and token:
@@ -26,11 +27,13 @@ def login(request):
     user = Users.objects.filter(email=email).first()
     if user and user.password == str(hash(password)):
         token = user.token = str(hash(strftime("%H:%M:%S")))
+        signature = user.signature
         user.save()
         response = HttpResponse(
             '{email: \'' + email + '\', token: \'' + str(token) + '\', success: 1} ')
         response.set_cookie('email', email)
         response.set_cookie('token', token)
+        response.set_cookie('signature', signature)
     else:
         response = HttpResponse('{success: 0}')
     return response
