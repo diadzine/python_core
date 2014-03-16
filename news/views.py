@@ -52,6 +52,4 @@ def save(request):
             id = news.id
             news = News.objects.filter(id=id)
             return HttpResponse(serialize('json', news))
-        else:
-            return HttpResponse('0')
     return HttpResponse('0')
