@@ -2,6 +2,7 @@
 
 from django.http import HttpResponse, Http404
 from django.core.serializers import serialize
+from django.views.decorators.csrf import csrf_exempt
 
 from pages.models import Pages
 from users.views import isLoggedIn
@@ -28,22 +29,22 @@ def delete(request):
     return HttpResponse('0')
 
 
+@csrf_exempt
 def save(request):
     if isLoggedIn(request):
-        req = request.GET
+        req = request.POST
         id = req.get('id')
-        title = req.get('title')
+        name = req.get('name')
         content = req.get('content')
-        mag = req.get('mag')
-        if id:
-            pages = Pages.objects.filter(id=id)
-            pages = pages.first()
+        if not int(id) == 0:
+            page = Pages.objects.filter(id=id).first()
         else:
-            pages = Pages()
-        pages.title = title
-        pages.content = content
-        pages.mag = mag
-        pages.save()
-        return HttpResponse('1')
+            page = Pages()
+        if name and content:
+            page.name = name
+            page.content = content
+            page.save()
+            id = page.id
+            page = Pages.objects.filter(id=id)
+            return HttpResponse(serialize('json', page))
     return HttpResponse('0')
-    
