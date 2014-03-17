@@ -28,3 +28,15 @@ def posts(request):
         post = BlogPosts.objects.all().order_by('date').reverse()[:20]
 
     return HttpResponse(serialize('json', post))
+    
+
+def saveBlogger(request):
+
+
+def savePost(request):
+
+
+def deleteBlogger(request):
+
+
+def deletePost(request):

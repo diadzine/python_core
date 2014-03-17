@@ -22,4 +22,28 @@ urlpatterns = patterns(
     name='basic_urls',
     ),
 
+    url(
+    regex=r'^bloggers/save/$',
+    view='saveBlogger',
+    name='basic_urls',
+    ),
+
+    url(
+    regex=r'^posts/save/$',
+    view='savePost',
+    name='basic_urls',
+    ),
+
+    url(
+    regex=r'^bloggers/delete/$',
+    view='deleteBlogger',
+    name='basic_urls',
+    ),
+
+    url(
+    regex=r'^posts/delete/$',
+    view='deletePost',
+    name='basic_urls',
+    ),
+
 )
