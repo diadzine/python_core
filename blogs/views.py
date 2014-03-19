@@ -20,13 +20,19 @@ def bloggers(request):
 
 
 def posts(request):
-	# Handle blogId and postId case.
     if request.GET.get('id'):
         postId = request.GET.get('id')
         post = BlogPosts.objects.filter(id=postId)
 
     else:
-        post = BlogPosts.objects.all().order_by('date').reverse()[:20]
+        post = BlogPosts.objects.all().order_by('date').reverse()
+
+    return HttpResponse(serialize('json', post))
+
+
+def blogId(request):
+    blogId = request.GET.get('blogId')
+    post = BlogPosts.objects.filter(blogId=blogId).order_by('date').reverse()
 
     return HttpResponse(serialize('json', post))
 

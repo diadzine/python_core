@@ -23,6 +23,12 @@ urlpatterns = patterns(
     ),
 
     url(
+    regex=r'^posts/blog/$',
+    view='blogId',
+    name='basic_urls',
+    ),
+
+    url(
     regex=r'^bloggers/save/$',
     view='saveBlogger',
     name='basic_urls',
