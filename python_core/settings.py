@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'users',
     'pages',
     'blogs',
+    'images',
     )
 
 MIDDLEWARE_CLASSES = (
