@@ -33,4 +33,9 @@ urlpatterns = patterns(
         r'^blogs/',
         include('blogs.urls')
     ),
+
+    url(
+        r'^ads/',
+        include('ads.urls')
+    ),
 )
