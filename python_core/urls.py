@@ -38,4 +38,9 @@ urlpatterns = patterns(
         r'^ads/',
         include('ads.urls')
     ),
+
+    url(
+        r'^rankings/',
+        include('rankings.urls')
+    ),
 )

@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, url
 
-from pages import views
+from rankings import views
 
 urlpatterns = patterns(
-    'pages.views',
+    'rankings.views',
     url(
         regex=r'^$',
         view='get',
@@ -11,7 +11,7 @@ urlpatterns = patterns(
     ),
 
     url(
-        regex=r'^pages/$',
+        regex=r'^rankings/$',
         view='get',
         name='basic_urls',
     ),

@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-CURRENT_DIR = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
+CURRENT_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
 
 
 APPEND_SLASH = True
@@ -32,7 +33,7 @@ ALLOWED_HOSTS = ['*.tooski.ch', '*.webfaction.com']
 ADMINS = (
     ('Sebastien Arnold', 'seba-1511@hotmail.com'),
     # ('Your Name', 'your_email@example.com'),
-    )
+)
 
 
 # Application definition
@@ -44,7 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #Additionnal Apps
+    # Additionnal Apps
     'corsheaders',
     # Custom Apps
     'news',
@@ -52,7 +53,8 @@ INSTALLED_APPS = (
     'pages',
     'blogs',
     'ads',
-    )
+    'rankings',
+)
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,7 +64,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware'
-    )
+)
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -75,10 +77,10 @@ WSGI_APPLICATION = 'python_core.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-'default': {
-'ENGINE': 'django.db.backends.sqlite3',
-'NAME': os.path.join(BASE_DIR, 'db.sqlite'),
-}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite'),
+    }
 }
 
 # URLs
