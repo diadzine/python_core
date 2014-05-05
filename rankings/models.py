@@ -9,7 +9,13 @@ Each row is a race, with its general information. (Where, category, etc...)
 
 
 class Races(models.Model):
-    email = models.TextField(max_length=255)
+    info = models.TextField(max_length=255)
+    category = models.TextField(max_length=255)
+    genre = models.TextField(max_length=255)
+    link = models.TextField(max_length=511)
+    location = models.TextField(max_length=255)
+    discipline = models.TextField(max_length=255)
+    raceId = models.IntegerField(max_length=255)
     date = models.DateTimeField(
         auto_now_add=True,
         auto_now=False
