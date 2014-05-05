@@ -40,7 +40,10 @@ Each row is a row of the general ranking of the FIS.
 
 
 class Leaders(models.Model):
-    email = models.TextField(max_length=255)
+    place = models.PositiveSmallIntegerField()
+    name = models.TextField(max_length=255)
+    country = models.TextField(max_length=255)
+    points = models.PositiveSmallIntegerField()
     date = models.DateTimeField(
         auto_now_add=True,
         auto_now=False
