@@ -43,6 +43,7 @@ class Leaders(models.Model):
     place = models.PositiveSmallIntegerField()
     name = models.TextField(max_length=255)
     country = models.TextField(max_length=255)
+    gender = models.TextField(max_length=20)
     points = models.PositiveSmallIntegerField()
     date = models.DateTimeField(
         auto_now_add=True,
