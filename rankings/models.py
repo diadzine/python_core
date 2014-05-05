@@ -15,42 +15,8 @@ class Races(models.Model):
     link = models.TextField(max_length=511)
     location = models.TextField(max_length=255)
     discipline = models.TextField(max_length=255)
-    raceId = models.IntegerField(max_length=255)
-    date = models.DateTimeField(
-        auto_now_add=True,
-        auto_now=False
-    )
-
-    def __unicode__(self):
-        return u'%s' % self.name
-
-"""
-Each entry is a line of a race's result. It includes the information given
-form the FIS ski website.
-"""
-
-
-class Results(models.Model):
-    email = models.TextField(max_length=255)
-    date = models.DateTimeField(
-        auto_now_add=True,
-        auto_now=False
-    )
-
-    def __unicode__(self):
-        return u'%s' % self.name
-
-"""
-Each row is a row of the general ranking of the FIS.
-"""
-
-
-class Leaders(models.Model):
-    place = models.PositiveSmallIntegerField()
-    name = models.TextField(max_length=255)
-    country = models.TextField(max_length=255)
-    gender = models.TextField(max_length=20)
-    points = models.PositiveSmallIntegerField()
+    raceId = models.IntegerField()
+    table = models.TextField()
     date = models.DateTimeField(
         auto_now_add=True,
         auto_now=False
