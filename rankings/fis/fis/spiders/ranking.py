@@ -4,7 +4,7 @@ from scrapy.selector import Selector
 from scrapy.spider import BaseSpider
 from scrapy.http import Request
 
-from tooski.items import TooskiRanking
+from fis.items import FisRanking
 
 
 class RankingSpider(BaseSpider):
@@ -23,7 +23,7 @@ class RankingSpider(BaseSpider):
 
     def parse_item(self, response):
         hxs = Selector(response)
-        item = TooskiRanking()
+        item = FisRanking()
         item['link'] = response.url
 
         rows = hxs.xpath('//div[contains(@class, "dcm-leaderBoard")]//tr')

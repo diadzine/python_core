@@ -5,7 +5,20 @@
 
 from scrapy.item import Item, Field
 
-class FisItem(Item):
-    # define the fields for your item here like:
-    # name = Field()
-    pass
+
+class FisRaces(Item):
+    location = Field()
+    id = Field()
+    link = Field()
+    date = Field()
+    category = Field()
+    genre = Field()
+    info = Field()
+    discipline = Field()
+
+
+class FisRanking(Item):
+    link = Field()
+    info = Field()
+    men = Field()
+    women = Field()

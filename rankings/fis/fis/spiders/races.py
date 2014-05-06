@@ -4,12 +4,12 @@ from scrapy.selector import Selector
 from scrapy.spider import BaseSpider
 from scrapy.http import Request
 
-from tooski.items import TooskiNews
+from fis.items import FisRaces
 
 
 class MyCrawlerSpider(BaseSpider):
     # nom du crawler à spécifier lors de l'exécution
-    name = 'tooski'
+    name = 'races'
 
     # domaine(s) sur le ou lesquels le crawler aura le droit d'aller
     allowed_domains = ['data.fis-ski.com']
@@ -26,7 +26,7 @@ class MyCrawlerSpider(BaseSpider):
     def parse_item(self, response):
         # TODO: Save the table in json/string format as a variable of item.
         hxs = Selector(response)
-        item = TooskiNews()
+        item = FisRaces()
         url = response.url
         item['link'] = url
         item['id'] = url[url.index('raceid=') + 7:]

@@ -12,4 +12,4 @@ SPIDER_MODULES = ['fis.spiders']
 NEWSPIDER_MODULE = 'fis.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'fis (+http://www.yourdomain.com)'
+USER_AGENT = 'Google (+http://www.google.com)'
