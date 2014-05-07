@@ -68,6 +68,7 @@ class MyCrawlerSpider(BaseSpider):
         else:
             item['discipline'] = 'Other'
 
-        item['table'] = 'A table.'
+        item['table'] = hxs.xpath(
+            '//table[contains(@class, "footable table-datas table-withpadding")]').extract()[2].strip()
 
         return item

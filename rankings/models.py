@@ -17,10 +17,7 @@ class Races(models.Model):
     discipline = models.TextField(max_length=255)
     raceId = models.IntegerField()
     table = models.TextField()
-    date = models.DateTimeField(
-        auto_now_add=True,
-        auto_now=False
-    )
+    date = models.TextField()
 
     def __unicode__(self):
         return u'%s' % self.info
