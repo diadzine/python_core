@@ -4,7 +4,7 @@
 import os
 import sys
 CURRENT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
-SPIDERS_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
+SPIDERS_DIR = os.path.abspath(os.path.join(CURRENT_DIR, os.pardir))
 SCRAPY_DIR = os.path.abspath(os.path.join(SPIDERS_DIR, os.pardir))
 MODULE_DIR = os.path.abspath(os.path.join(SCRAPY_DIR, os.pardir))
 BACKEND_DIR = os.path.abspath(os.path.join(MODULE_DIR, os.pardir))
@@ -16,11 +16,6 @@ sys.path.append(APP_DIR)
 sys.path.append(MODULE_DIR)
 sys.path.append(WEBAPPS_DIR)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
-
-from django.core.management import setup_environ
-from python_core import settings
-
-setup_environ(settings)
 
 from python_core.rankings.models import Races
 
