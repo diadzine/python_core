@@ -19,6 +19,8 @@ sys.path.append(MODULE_DIR)
 sys.path.append(WEBAPPS_DIR)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
 
+from django.conf import settings
+
 from rankings.models import Races
 
 
