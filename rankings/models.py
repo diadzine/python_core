@@ -9,7 +9,7 @@ WEBAPPS_DIR = os.path.abspath(os.path.join(APP_DIR, os.pardir))
 
 sys.path.insert(0, BACKEND_DIR + '/')
 sys.path.insert(0, APP_DIR + '/')
-sys.path.insert(0, WEBAPPS_DIR + '/')
+sys.path.insert(0, CURRENT_DIR + '/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
 
 print CURRENT_DIR
