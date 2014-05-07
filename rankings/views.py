@@ -14,6 +14,6 @@ def get(request):
         races = Races.objects.filter(id=racesId)
 
     else:
-        races = Races.objects.all().order_by('date').reverse()
+        races = Races.objects.all().order_by('date').reverse()[:25]
 
     return HttpResponse(serialize('json', races))

@@ -28,14 +28,14 @@ class FisPipeline(object):
 
         # Here we'll register the current item in the database:
         race = Races()
-        race.info = item['info']
-        race.category = item['category']
-        race.genre = item['genre']
-        race.link = item['link']
-        race.location = item['location']
-        race.discipline = item['discipline']
+        race.info = item['info'].strip()
+        race.category = item['category'].strip()
+        race.genre = item['genre'].strip()
+        race.link = item['link'].strip()
+        race.location = item['location'].strip()
+        race.discipline = item['discipline'].strip()
         race.raceId = item['id']
-        race.table = item['table']
+        race.table = item['table'].strip()
         race.date = mktime(strptime(item['date'].strip(), '%d.%m.%Y'))
         race.save()
         return item
