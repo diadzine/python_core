@@ -1,4 +1,23 @@
 # -*- coding: utf-8 -*-
+# Importing Django models
+
+import os
+import sys
+CURRENT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
+SPIDERS_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
+SCRAPY_DIR = os.path.abspath(os.path.join(SPIDERS_DIR, os.pardir))
+MODULE_DIR = os.path.abspath(os.path.join(SCRAPY_DIR, os.pardir))
+BACKEND_DIR = os.path.abspath(os.path.join(MODULE_DIR, os.pardir))
+WEBAPPS_DIR = os.path.abspath(os.path.join(BACKEND_DIR, os.pardir))
+
+sys.path.append(BACKEND_DIR)
+sys.path.append(MODULE_DIR)
+sys.path.append(WEBAPPS_DIR)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
+
+from rankings.models import Races
+
+# Other imports
 from scrapy.selector import Selector
 
 from scrapy.spider import BaseSpider
@@ -14,17 +33,17 @@ class MyCrawlerSpider(BaseSpider):
     # domaine(s) sur le ou lesquels le crawler aura le droit d'aller
     allowed_domains = ['data.fis-ski.com']
 
-    # We'll save this kind of variable in a pickle file and load it each time.
-    max_newsid = 16015
+    # Getting the last raceId we processed
+    last_race = Races.objects.all().order_by('date').reverse().first()
+    max_newsid = int(last_race.raceId)
 
     def start_requests(self):
-        for i in xrange(16000, self.max_newsid):
+        for i in xrange(self.max_newsid, self.max_newsid + 1000):
             yield Request(
                 'http://data.fis-ski.com/dynamic/results.html?sector=AL&raceid=%d' % i,
                 callback=self.parse_item)
 
     def parse_item(self, response):
-        # TODO: Save the table in json/string format as a variable of item.
         hxs = Selector(response)
         item = FisRaces()
         url = response.url

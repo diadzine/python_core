@@ -15,8 +15,6 @@ WEBAPPS_DIR = os.path.abspath(os.path.join(BACKEND_DIR, os.pardir))
 sys.path.append(BACKEND_DIR)
 sys.path.append(MODULE_DIR)
 sys.path.append(WEBAPPS_DIR)
-print BACKEND_DIR
-# os.environ['PYTHONPATH'] = BACKEND_DIR
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
 
 from rankings.models import Races
