@@ -7,9 +7,9 @@ BACKEND_DIR = os.path.abspath(os.path.join(CURRENT_DIR, os.pardir))
 APP_DIR = os.path.abspath(os.path.join(BACKEND_DIR, os.pardir))
 WEBAPPS_DIR = os.path.abspath(os.path.join(APP_DIR, os.pardir))
 
-sys.path.append(BACKEND_DIR + '/')
-sys.path.append(APP_DIR + '/')
-sys.path.append(WEBAPPS_DIR + '/')
+sys.path.insert(0, BACKEND_DIR + '/')
+sys.path.insert(0, APP_DIR + '/')
+sys.path.insert(0, WEBAPPS_DIR + '/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
 
 from django.db import models
