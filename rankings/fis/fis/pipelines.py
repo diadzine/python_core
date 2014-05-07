@@ -19,7 +19,7 @@ sys.path.append(MODULE_DIR + '/')
 sys.path.append(WEBAPPS_DIR + '/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
 
-from rankings.models import Races
+# from rankings.models import Races
 
 
 class FisPipeline(object):
@@ -29,15 +29,15 @@ class FisPipeline(object):
             return item
 
         # Here we'll register the current item in the database:
-        race = Races()
-        race.info = item['info'].strip()
-        race.category = item['category'].strip()
-        race.genre = item['genre'].strip()
-        race.link = item['link'].strip()
-        race.location = item['location'].strip()
-        race.discipline = item['discipline'].strip()
-        race.raceId = item['id']
-        race.table = item['table'].strip()
-        race.date = mktime(strptime(item['date'].strip(), '%d.%m.%Y'))
-        race.save()
+        # race = Races()
+        # race.info = item['info'].strip()
+        # race.category = item['category'].strip()
+        # race.genre = item['genre'].strip()
+        # race.link = item['link'].strip()
+        # race.location = item['location'].strip()
+        # race.discipline = item['discipline'].strip()
+        # race.raceId = item['id']
+        # race.table = item['table'].strip()
+        # race.date = mktime(strptime(item['date'].strip(), '%d.%m.%Y'))
+        # race.save()
         return item
