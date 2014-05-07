@@ -17,7 +17,7 @@ sys.path.append(MODULE_DIR)
 sys.path.append(WEBAPPS_DIR)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
 
-from python_core.rankings.models import Races
+from rankings.models import Races
 
 # Other imports
 from scrapy.selector import Selector
