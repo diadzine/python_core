@@ -15,6 +15,7 @@ class FisRaces(Item):
     genre = Field()
     info = Field()
     discipline = Field()
+    table = Field()
 
 
 class FisRanking(Item):

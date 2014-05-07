@@ -68,4 +68,6 @@ class MyCrawlerSpider(BaseSpider):
         else:
             item['discipline'] = 'Other'
 
+        item['table'] = 'A table.'
+
         return item

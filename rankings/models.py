@@ -23,4 +23,4 @@ class Races(models.Model):
     )
 
     def __unicode__(self):
-        return u'%s' % self.name
+        return u'%s' % self.info
