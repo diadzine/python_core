@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 from django.conf.urls import patterns, url
 
 from rankings import views
@@ -19,12 +20,6 @@ urlpatterns = patterns(
     url(
         regex=r'^save/$',
         view='save',
-        name='basic_urls',
-    ),
-
-    url(
-        regex=r'^delete/$',
-        view='delete',
         name='basic_urls',
     ),
 

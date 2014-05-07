@@ -5,6 +5,7 @@
 
 import os
 import sys
+from time import strptime, mktime
 CURRENT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 SCRAPY_DIR = os.path.abspath(os.path.join(CURRENT_DIR, os.pardir))
 MODULE_DIR = os.path.abspath(os.path.join(SCRAPY_DIR, os.pardir))
@@ -37,6 +38,6 @@ class FisPipeline(object):
         race.discipline = item['discipline']
         race.raceId = item['id']
         race.table = item['table']
-        race.date = item['date']
+        race.date = mktime(strptime(item['date'].strip(), '%d.%m.%Y'))
         race.save()
         return item
