@@ -12,6 +12,11 @@ sys.path.insert(0, APP_DIR + '/')
 sys.path.insert(0, WEBAPPS_DIR + '/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
 
+print CURRENT_DIR
+print BACKEND_DIR
+print APP_DIR
+print WEBAPPS_DIR
+
 from django.db import models
 
 # Create your models here.
