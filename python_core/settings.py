@@ -46,6 +46,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Additionnal Apps
+    'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     # Custom Apps
     'news',
@@ -64,6 +66,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware'
+    'django.middleware.common.CommonMiddleware',
 )
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -71,6 +74,17 @@ CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'python_core.urls'
 
 WSGI_APPLICATION = 'python_core.wsgi.application'
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 
 # Database
