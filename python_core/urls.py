@@ -43,4 +43,9 @@ urlpatterns = patterns(
         r'^rankings/',
         include('rankings.urls')
     ),
+
+    url(
+        r'^apiv1/',
+        include('apiv1.urls')
+    ),
 )
