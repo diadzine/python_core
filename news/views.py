@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 
 from django.http import HttpResponse, Http404
+from django.contrib.syndication.views import Feed
 from django.core.serializers import serialize
 from django.views.decorators.csrf import csrf_exempt
 
@@ -52,3 +53,22 @@ def save(request):
             news = News.objects.filter(id=id)
             return HttpResponse(serialize('json', news))
     return HttpResponse('0')
+
+
+class LatestEntriesFeed(Feed):
+    title = "Tooski.ch"
+    link = "/sitenews/"
+    description = "Les dernières nouvelles du ski alpin"
+
+    def items(self):
+        return News.objects.order_by('date')[:25]
+
+    def item_title(self, item):
+        return item.title
+
+    def item_description(self, item):
+        return item.content
+
+    # item_link is only needed if News has no get_absolute_url method.
+    def item_link(self, item):
+        return 'http://www.tooski.ch/#!/News?id=%s' % item.id
