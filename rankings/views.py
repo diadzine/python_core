@@ -17,3 +17,7 @@ def get(request):
         races = Races.objects.all().order_by('date').reverse()[:25]
 
     return HttpResponse(serialize('json', races))
+
+
+def save(request):
+    pass
