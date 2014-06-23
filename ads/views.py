@@ -1,5 +1,3 @@
-import cloudinary
-
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from cloudinary import (
@@ -7,14 +5,7 @@ from cloudinary import (
 )
 
 from ads.models import Ads
-
-
-def connect():
-    cloudinary.config(
-        cloud_name='tooski',
-        api_key='664376587529146',
-        api_secret='YHcBvOXBRmOroGCAxnpx_e5jFp0',
-    )
+from pictures.views import connect
 
 
 @csrf_exempt
@@ -39,9 +30,9 @@ def save(request):
         ad.name = uploaded['public_id']
         ad.url = uploaded['url']
         ad.secureUrl = uploaded['secure_url']
-        ad.horizontal = request.POST.get('horizontal')
-        ad.vertical = request.POST.get('vertical')
-        ad.square = request.POST.get('square')
+        ad.horizontal = 1 if request.POST.get('horizontal') == 'true' else 0
+        ad.vertical = 1 if request.POST.get('vertical') == 'true' else 0
+        ad.square = 1 if request.POST.get('square') == 'true' else 0
         ad.save()
         return HttpResponse(ad.url)
     return HttpResponse('No image received...')
