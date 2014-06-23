@@ -50,4 +50,9 @@ urlpatterns = patterns(
         r'^rankings/',
         include('rankings.urls')
     ),
+
+    url(
+        r'^pictures/',
+        include('pictures.urls')
+    ),
 )
