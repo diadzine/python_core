@@ -15,17 +15,13 @@ urlpatterns = patterns(
 
     url(r'^auth-token/', obtain_auth_token),
 
-    # url(regex=r'^users/$',
-    #     view=apiv1.views.UserCreateReadView.as_view(),
-    #     name='REST View'),
+    url(regex=r'^news/$',
+        view=apiv1.views.NewsCreateReadView.as_view(),
+        name='REST View'),
 
-    # url(regex=r'^users/agents/$',
-    #     view=apiv1.views.AgentsForUserCreateReadView.as_view(),
-    #     name='REST View'),
-
-    # url(regex=r'^users/(?P<pk>[-\w]+)/$',
-    #     view=apiv1.views.UserReadUpdateDeleteView.as_view(),
-    #     name='REST View'),
+    url(regex=r'^news/(?P<pk>[-\w]+)/$',
+        view=apiv1.views.NewsReadUpdateDeleteView.as_view(),
+        name='REST View'),
 
     # url(regex=r'^users/(?P<pk>[-\w]+)/set_password/$',
     #     view=users.views.set_password,

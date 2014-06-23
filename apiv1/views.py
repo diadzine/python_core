@@ -1,56 +1,39 @@
-# from rest_framework.generics import (
-#     ListAPIView,
-#     ListCreateAPIView,
-#     RetrieveUpdateDestroyAPIView,
-# )
-# from rest_framework.permissions import (
-#     IsAuthenticated,
-#     IsAdminUser,
-# )
+from rest_framework.generics import (
+    ListAPIView,
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
+from rest_framework.permissions import (
+    IsAuthenticated,
+    IsAdminUser,
+    IsAuthenticatedOrReadOnly
+)
 
-# from apiv1.serializers import (
-#     UserSerializer,
-#     AgentTypeSerializer,
-#     AgentSerializer,
-#     TransactionSerializer,
-#     ProductFamilySerializer,
-#     CurrencySerializer,
-#     ExchangeRateSerializer,
-# )
+from apiv1.serializers import (
+    NewsSerializer,
+)
 
-# from users.models import CustomUser
-# from company.models import (
-#     Agent,
-#     Agent_type,
-# )
-# from transactions.models import (
-#     Transaction,
-#     Product_family,
-# )
-# from money.models import (
-#     Currency,
-#     Exchange_rate,
-# )
+from news.models import News
 
 
-# class SchBergListView(ListCreateAPIView):
+class SchBergListView(ListCreateAPIView):
 
-#     ''' Correctly sets the "by" Custom user field. '''
+    ''' Correctly sets the "by" Custom user field. '''
 
-#     def pre_save(self, obj):
-#         obj.by = self.request.user
-
-
-# class UserCreateReadView(ListCreateAPIView):
-#     queryset = CustomUser.objects.all()
-#     serializer_class = UserSerializer
-#     permission_classes = (IsAdminUser, )
+    def pre_save(self, obj):
+        obj.by = self.request.user
 
 
-# class UserReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
-#     queryset = CustomUser.objects.all()
-#     serializer_class = UserSerializer
-#     permission_classes = (IsAdminUser, )
+class NewsCreateReadView(ListCreateAPIView):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+
+class NewsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
 
 
 # class AgentTypeCreateReadView(SchBergListView):

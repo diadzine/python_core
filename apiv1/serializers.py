@@ -1,25 +1,14 @@
-# from rest_framework import serializers
-# from users.models import CustomUser
-# from company.models import (
-#     Agent,
-#     Agent_type,
-# )
-# from transactions.models import (
-#     Transaction,
-#     Transaction_type,
-#     Product_family,
-# )
-# from money.models import (
-#     Currency,
-#     Exchange_rate,
-# )
+from rest_framework import serializers
+from news.models import (
+    News,
+)
 
 
-# class UserSerializer(serializers.ModelSerializer):
+class NewsSerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = CustomUser
-#         fields = ('id', 'is_admin', 'email', 'name')
+    class Meta:
+        model = News
+        fields = ('id', 'title', 'author', 'content', 'mag', 'date', )
 
 
 # class AgentTypeSerializer(serializers.ModelSerializer):
