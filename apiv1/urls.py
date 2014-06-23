@@ -27,6 +27,18 @@ urlpatterns = patterns(
         view=apiv1.views.AdsCreateReadView.as_view(),
         name='REST View'),
 
+    # url(regex=r'^ads/horizontal/$',
+    #     view=apiv1.views.AdsCreateReadView.as_view(),
+    #     name='REST View'),
+
+    # url(regex=r'^ads/vertical/$',
+    #     view=apiv1.views.AdsCreateReadView.as_view(),
+    #     name='REST View'),
+
+    # url(regex=r'^ads/square/$',
+    #     view=apiv1.views.AdsCreateReadView.as_view(),
+    #     name='REST View'),
+
     url(regex=r'^ads/(?P<pk>[-\w]+)/$',
         view=apiv1.views.AdsReadUpdateDeleteView.as_view(),
         name='REST View'),

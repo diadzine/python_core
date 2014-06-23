@@ -28,10 +28,23 @@ class NewsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     serializer_class = NewsSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
+
 class AdsCreateReadView(ListCreateAPIView):
     queryset = Ads.objects.all()
     serializer_class = AdsSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
+
+    def get_queryset(self):
+        if self.request.GET.get('category'):
+            cat = self.request.GET.get('category')
+            if cat == 'square':
+                return Ads.objects.filter(square=1)
+            if cat == 'horizontal':
+                return Ads.objects.filter(horizontal=1)
+            if cat == 'vertical':
+                return Ads.objects.filter(vertical=1)
+        return Ads.objects.all()
+
 
 
 class AdsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
