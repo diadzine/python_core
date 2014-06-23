@@ -23,7 +23,11 @@ urlpatterns = patterns(
         view=apiv1.views.NewsReadUpdateDeleteView.as_view(),
         name='REST View'),
 
-    # url(regex=r'^users/(?P<pk>[-\w]+)/set_password/$',
-    #     view=users.views.set_password,
-    #     name='Custom View'),
+    url(regex=r'^ads/$',
+        view=apiv1.views.AdsCreateReadView.as_view(),
+        name='REST View'),
+
+    url(regex=r'^ads/(?P<pk>[-\w]+)/$',
+        view=apiv1.views.AdsReadUpdateDeleteView.as_view(),
+        name='REST View'),
 )

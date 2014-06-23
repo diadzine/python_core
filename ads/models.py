@@ -10,7 +10,6 @@ class Ads(models.Model):
     horizontal = models.PositiveSmallIntegerField(null=True)
     vertical = models.PositiveSmallIntegerField(null=True)
     square = models.PositiveSmallIntegerField(null=True)
-    profilePic = models.TextField(null=True)
     date = models.DateTimeField(
         auto_now_add=True,
         auto_now=False

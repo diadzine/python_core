@@ -25,7 +25,8 @@ def save(request):
         image = request.FILES.get('file')
         uploaded = uploader.upload(image,
                                    eager=[
-                                       # Each eager will be automatically created when the
+                                       # Each eager will be automatically
+                                       #  created when the
                                        # file is uploaded. Could be usefull for
                                        # {
                                        #     'width': 200,
@@ -38,9 +39,9 @@ def save(request):
         ad.name = uploaded['public_id']
         ad.url = uploaded['url']
         ad.secureUrl = uploaded['secure_url']
-        ad.horizontal = 0
-        ad.vertical = 0
-        ad.square = 1
+        ad.horizontal = request.POST.get('horizontal')
+        ad.vertical = request.POST.get('vertical')
+        ad.square = request.POST.get('square')
         ad.save()
         return HttpResponse(ad.url)
     return HttpResponse('No image received...')

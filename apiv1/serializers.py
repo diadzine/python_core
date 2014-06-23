@@ -1,7 +1,6 @@
 from rest_framework import serializers
-from news.models import (
-    News,
-)
+from news.models import News
+from ads.models import Ads
 
 
 class NewsSerializer(serializers.ModelSerializer):
@@ -11,15 +10,9 @@ class NewsSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'author', 'content', 'mag', 'date', )
 
 
-# class AgentTypeSerializer(serializers.ModelSerializer):
+class AdsSerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = Agent_type
-#         fields = ('id', 'name',)
-
-
-# class AgentSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Agent
-#         fields = ('id', 'name', 'parent', 'type', 'user', )
+    class Meta:
+        model = Ads
+        fields = ('id', 'name', 'url', 'secureUrl',
+                  'horizontal', 'vertical', 'square', 'date', )
