@@ -1,11 +1,9 @@
-import HttpResponse
-import serialize
 import cloudinary
 
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from cloudinary import (
     uploader,
-    api,
 )
 
 from ads.models import Ads
@@ -23,8 +21,8 @@ def connect():
 def save(request):
     # Check if user is connected.
     connect()
-    if request.FILES and request.FILES['file']:
-        image = request.FILES['file']
+    if request.FILES.get('file'):
+        image = request.FILES.get('file')
         uploaded = uploader.upload(image,
                                    eager=[
                                        # Each eager will be automatically created when the
@@ -39,9 +37,18 @@ def save(request):
         ad = Ads()
         ad.name = uploaded['public_id']
         ad.url = uploaded['url']
-        ad.secureUrl = uploaded['securle_url']
+        ad.secureUrl = uploaded['secure_url']
         ad.horizontal = 0
         ad.vertical = 0
         ad.square = 1
         ad.save()
-        return HttpResponse(serialize('json', ad))
+        return HttpResponse(ad.url)
+    return HttpResponse('No image received...')
+
+
+def get():
+    pass
+
+
+def delete():
+    pass
