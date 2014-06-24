@@ -27,7 +27,7 @@ def upload(request):
                                        #  created when the
                                        # file is uploaded. Could be usefull for
                                        {
-                                           'width': 500,
+                                           'width': 650,
                                            'height': 280,
                                            'crop': 'thumb',
                                            'gravity': 'face',
@@ -39,13 +39,13 @@ def upload(request):
                                            'gravity': 'face',
                                        },
                                        {
-                                           'width': 1000,
+                                           'width': 1800,
                                            'height': 280,
                                            'crop': 'thumb',
                                            'gravity': 'face',
                                        },
                                        {
-                                           'width': 1500,
+                                           'width': 500,
                                            'height': 280,
                                            'crop': 'thumb',
                                            'gravity': 'face',
