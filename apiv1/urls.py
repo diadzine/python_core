@@ -19,6 +19,10 @@ urlpatterns = patterns(
         view=apiv1.views.NewsCreateReadView.as_view(),
         name='REST View'),
 
+    url(regex=r'^mag/$',
+        view=apiv1.views.MagCreateReadView.as_view(),
+        name='REST View'),
+
     url(regex=r'^news/(?P<pk>[-\w]+)/$',
         view=apiv1.views.NewsReadUpdateDeleteView.as_view(),
         name='REST View'),

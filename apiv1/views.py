@@ -24,6 +24,10 @@ class NewsCreateReadView(ListCreateAPIView):
     paginate_by = 10
 
 
+class MagCreateReadView(NewsCreateReadView):
+    queryset = News.objects.filter(mag=1).order_by('date').reverse()
+
+
 class NewsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
@@ -45,7 +49,6 @@ class AdsCreateReadView(ListCreateAPIView):
             if cat == 'vertical':
                 return Ads.objects.filter(vertical=1)
         return Ads.objects.all()
-
 
 
 class AdsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
