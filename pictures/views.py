@@ -26,12 +26,30 @@ def upload(request):
                                        # Each eager will be automatically
                                        #  created when the
                                        # file is uploaded. Could be usefull for
-                                       # {
-                                       #     'width': 200,
-                                       #     'height': 200,
-                                       #     'crop': 'thumb',
-                                       #     'gravity': 'face',
-                                       # },
+                                       {
+                                           'width': 500,
+                                           'height': 280,
+                                           'crop': 'thumb',
+                                           'gravity': 'face',
+                                       },
+                                       {
+                                           'width': 700,
+                                           'height': 280,
+                                           'crop': 'thumb',
+                                           'gravity': 'face',
+                                       },
+                                       {
+                                           'width': 1000,
+                                           'height': 280,
+                                           'crop': 'thumb',
+                                           'gravity': 'face',
+                                       },
+                                       {
+                                           'width': 1500,
+                                           'height': 280,
+                                           'crop': 'thumb',
+                                           'gravity': 'face',
+                                       }
                                    ])
         return HttpResponse(uploaded['url'])
     return HttpResponse('No image received...')
