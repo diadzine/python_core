@@ -18,9 +18,10 @@ from ads.models import Ads
 
 
 class NewsCreateReadView(ListCreateAPIView):
-    queryset = News.objects.all()
+    queryset = News.objects.all().order_by('date').reverse()
     serializer_class = NewsSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
+    paginate_by = 10
 
 
 class NewsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
