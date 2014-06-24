@@ -1,3 +1,4 @@
+import datetime
 from rest_framework.generics import (
     ListAPIView,
     ListCreateAPIView,
@@ -18,14 +19,16 @@ from ads.models import Ads
 
 
 class NewsCreateReadView(ListCreateAPIView):
-    queryset = News.objects.all().order_by('date').reverse()
+    queryset = News.objects.filter(
+        date__lte=datetime.date.today()).order_by('date').reverse()
     serializer_class = NewsSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
     paginate_by = 10
 
 
 class MagCreateReadView(NewsCreateReadView):
-    queryset = News.objects.filter(mag=1).order_by('date').reverse()
+    queryset = News.objects.filter(date__lte=datetime.date.today()).filter(
+        mag=1).order_by('date').reverse()
 
 
 class NewsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
