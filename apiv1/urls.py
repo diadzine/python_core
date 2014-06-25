@@ -58,4 +58,12 @@ urlpatterns = patterns(
     url(regex=r'^skiclubs/(?P<pk>[-\w]+)/$',
         view=apiv1.views.SkiclubsReadUpdateDeleteView.as_view(),
         name='REST View'),
+
+    url(regex=r'^pages/$',
+        view=apiv1.views.PagesCreateReadView.as_view(),
+        name='REST View'),
+
+    url(regex=r'^pages/(?P<pk>[-\w]+)/$',
+        view=apiv1.views.PagesReadUpdateDeleteView.as_view(),
+        name='REST View'),
 )
