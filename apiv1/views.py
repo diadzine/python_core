@@ -15,6 +15,7 @@ from apiv1.serializers import (
     BlogPostsSerializer,
     SkiclubsSerializer,
     PagesSerializer,
+    RacesSerializer,
 )
 
 from datetime import datetime
@@ -23,6 +24,7 @@ from news.models import News
 from ads.models import Ads
 from skiclubs.models import Skiclubs
 from pages.models import Pages
+from rankings.models import Races
 from blogs.models import (
     Bloggers,
     BlogPosts,
@@ -123,3 +125,15 @@ class PagesReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     serializer_class = PagesSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
     queryset = Pages.objects.all().order_by('id')
+
+
+class RacesCreateReadView(ListCreateAPIView):
+    serializer_class = RacesSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+    queryset = Races.objects.all().order_by('id')
+
+
+class RacesReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    serializer_class = RacesSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+    queryset = Races.objects.all().order_by('id')

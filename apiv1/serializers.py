@@ -3,6 +3,7 @@ from news.models import News
 from ads.models import Ads
 from skiclubs.models import Skiclubs
 from pages.models import Pages
+from rankings.models import Races
 from blogs.models import (
     Bloggers,
     BlogPosts,
@@ -51,3 +52,10 @@ class PagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pages
         fields = ('id', 'name', 'content', 'date', )
+
+
+class RacesSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Races
+        fields = ('id', 'info', 'category', 'genre', 'link', 'location', 'discipline', 'raceId', 'table', 'date', )
