@@ -11,12 +11,18 @@ from rest_framework.permissions import (
 from apiv1.serializers import (
     NewsSerializer,
     AdsSerializer,
+    BloggersSerializer,
+    BlogPostsSerializer,
 )
 
 from datetime import datetime
 
 from news.models import News
 from ads.models import Ads
+from blogs.models import (
+    Bloggers,
+    BlogPosts,
+)
 
 
 class NewsCreateReadView(ListCreateAPIView):
@@ -59,3 +65,34 @@ class AdsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     queryset = Ads.objects.all()
     serializer_class = AdsSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
+
+
+class BloggersCreateReadView(ListCreateAPIView):
+    queryset = Bloggers.objects.all().order_by('date').reverse()
+    serializer_class = BloggersSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+
+class BloggersReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    queryset = Bloggers.objects.all()
+    serializer_class = BloggersSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+
+class BlogPostsCreateReadView(ListCreateAPIView):
+    serializer_class = BlogPostsSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+    def get_queryset(self):
+        blogger = self.kwargs['blogger']
+        return BlogPosts.objects.filter(blogId=blogger).filter(date__lte=datetime.now).order_by('date').reverse()
+
+
+class BlogPostsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    serializer_class = BlogPostsSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+    def get_queryset(self):
+        blogger = self.kwargs['blogger']
+        id = self.kwargs['pk']
+        return BlogPosts.objects.filter(blogId=blogger).filter(id=id).filter(date__lte=datetime.now)

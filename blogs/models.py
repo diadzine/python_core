@@ -5,7 +5,8 @@ from django.db import models
 
 
 class Bloggers(models.Model):
-	# Note: Ad and sponsors contains many addresses which are separated by |.
+        # Note: Ad and sponsors contains many addresses which are separated by
+        # |.
     name = models.CharField(max_length=510)
     biography = models.TextField(null=True)
     linkResults = models.TextField(null=True)
@@ -19,6 +20,7 @@ class Bloggers(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.name
+
 
 class BlogPosts(models.Model):
     title = models.CharField(max_length=255)
