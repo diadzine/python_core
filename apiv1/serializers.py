@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from news.models import News
 from ads.models import Ads
+from skiclubs.models import Skiclubs
 from blogs.models import (
     Bloggers,
     BlogPosts,
@@ -35,3 +36,10 @@ class BlogPostsSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPosts
         fields = ('id', 'title', 'content', 'blogId', 'date', )
+
+
+class SkiclubsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Skiclubs
+        fields = ('id', 'title', 'latitude', 'longitude', 'contact', 'description', )

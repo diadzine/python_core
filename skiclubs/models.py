@@ -5,15 +5,10 @@ from django.db import models
 
 class Skiclubs(models.Model):
     title = models.CharField(max_length=510)
-    url = models.TextField(null=True)
-    secureUrl = models.TextField(null=True)
-    horizontal = models.PositiveSmallIntegerField(null=True)
-    vertical = models.PositiveSmallIntegerField(null=True)
-    square = models.PositiveSmallIntegerField(null=True)
-    date = models.DateTimeField(
-        auto_now_add=True,
-        auto_now=False
-    )
+    latitude = models.TextField(null=True)
+    longitude = models.TextField(null=True)
+    contact = models.TextField(null=True)
+    description = models.TextField(null=True)
 
     def __unicode__(self):
         return u'%s' % self.name

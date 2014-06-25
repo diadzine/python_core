@@ -50,4 +50,12 @@ urlpatterns = patterns(
     url(regex=r'^bloggers/(?P<blogger>[-\w]+)/posts/(?P<pk>[-\w]+)/$',
         view=apiv1.views.BlogPostsReadUpdateDeleteView.as_view(),
         name='REST View'),
+
+    url(regex=r'^skiclubs/$',
+        view=apiv1.views.SkiclubsCreateReadView.as_view(),
+        name='REST View'),
+
+    url(regex=r'^skiclubs/(?P<pk>[-\w]+)/$',
+        view=apiv1.views.SkiclubsReadUpdateDeleteView.as_view(),
+        name='REST View'),
 )

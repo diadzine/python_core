@@ -13,12 +13,14 @@ from apiv1.serializers import (
     AdsSerializer,
     BloggersSerializer,
     BlogPostsSerializer,
+    SkiclubsSerializer,
 )
 
 from datetime import datetime
 
 from news.models import News
 from ads.models import Ads
+from skiclubs.models import Skiclubs
 from blogs.models import (
     Bloggers,
     BlogPosts,
@@ -96,3 +98,15 @@ class BlogPostsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
         blogger = self.kwargs['blogger']
         id = self.kwargs['pk']
         return BlogPosts.objects.filter(blogId=blogger).filter(id=id).filter(date__lte=datetime.now)
+
+
+class SkiclubsCreateReadView(ListCreateAPIView):
+    serializer_class = SkiclubsSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+    queryset = Skiclubs.objects.all().order_by('title')
+
+
+class SkiclubsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    serializer_class = SkiclubsSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+    queryset = Skiclubs.objects.all().order_by('title')
