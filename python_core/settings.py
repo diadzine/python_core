@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'rankings',
     'pictures',
     'skiclubs',
+    'widgets',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -67,6 +67,14 @@ urlpatterns = patterns(
         view=apiv1.views.PagesReadUpdateDeleteView.as_view(),
         name='REST View'),
 
+    url(regex=r'^widgets/$',
+        view=apiv1.views.WidgetsCreateReadView.as_view(),
+        name='REST View'),
+
+    url(regex=r'^widgets/(?P<pk>[-\w]+)/$',
+        view=apiv1.views.WidgetsReadUpdateDeleteView.as_view(),
+        name='REST View'),
+
     url(regex=r'^races/$',
         view=apiv1.views.RacesCreateReadView.as_view(),
         name='REST View'),

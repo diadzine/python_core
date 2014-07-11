@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Widgets(models.Model):
-    name = models.CharField(null=True)
+    name = models.CharField(max_length=128, null=True)
     content = models.TextField(null=True)
 
     def __unicode__(self):
