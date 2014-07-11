@@ -13,6 +13,7 @@ class Bloggers(models.Model):
     profilePic = models.TextField(null=True)
     sponsors = models.TextField(null=True)
     ad = models.TextField(null=True)
+    header = models.TextField(null=True)
     date = models.DateTimeField(
         auto_now_add=True,
         auto_now=False

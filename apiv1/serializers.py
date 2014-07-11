@@ -32,7 +32,7 @@ class BloggersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bloggers
         fields = ('id', 'name', 'biography', 'linkResults',
-                  'profilePic', 'sponsors', 'ad', 'date', )
+                  'profilePic', 'sponsors', 'ad', 'header', 'date', )
 
 
 class BlogPostsSerializer(serializers.ModelSerializer):
