@@ -60,4 +60,9 @@ urlpatterns = patterns(
         r'^skiclubs/',
         include('skiclubs.urls')
     ),
+
+    url(
+        r'^widgets/',
+        include('widgets.urls')
+    ),
 )

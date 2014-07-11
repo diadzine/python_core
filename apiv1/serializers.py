@@ -4,6 +4,7 @@ from ads.models import Ads
 from skiclubs.models import Skiclubs
 from pages.models import Pages
 from rankings.models import Races
+from widgets.models import Widgets
 from blogs.models import (
     Bloggers,
     BlogPosts,
@@ -59,3 +60,11 @@ class RacesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Races
         fields = ('id', 'info', 'category', 'genre', 'link', 'location', 'discipline', 'raceId', 'table', 'date', )
+
+
+
+class WidgetsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Widgets
+        fields = ('id', 'name', 'content', )

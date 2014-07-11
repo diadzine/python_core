@@ -16,6 +16,7 @@ from apiv1.serializers import (
     SkiclubsSerializer,
     PagesSerializer,
     RacesSerializer,
+    WidgetsSerializer,
 )
 
 from datetime import datetime
@@ -25,6 +26,7 @@ from ads.models import Ads
 from skiclubs.models import Skiclubs
 from pages.models import Pages
 from rankings.models import Races
+from widgets.models import Widgets
 from blogs.models import (
     Bloggers,
     BlogPosts,
@@ -115,6 +117,7 @@ class SkiclubsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
     queryset = Skiclubs.objects.all().order_by('title')
 
+
 class PagesCreateReadView(ListCreateAPIView):
     serializer_class = PagesSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
@@ -136,6 +139,7 @@ class RacesCreateReadView(ListCreateAPIView):
 class RacesCategoryCreateReadView(ListCreateAPIView):
     serializer_class = RacesSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
+
     def get_queryset(self):
         category = self.kwargs['category']
         return Races.objects.filter(category=category).order_by('raceId')
@@ -145,3 +149,15 @@ class RacesReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     serializer_class = RacesSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
     queryset = Races.objects.all().order_by('raceId')
+
+
+class WidgetsCreateReadView(ListCreateAPIView):
+    queryset = Widgets.objects.all()
+    serializer_class = WidgetsSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+
+class WidgetsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    queryset = Widgets.objects.all()
+    serializer_class = WidgetsSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
