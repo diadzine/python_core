@@ -17,6 +17,7 @@ from apiv1.serializers import (
     PagesSerializer,
     RacesSerializer,
     WidgetsSerializer,
+    CoversSerializer,
 )
 
 from datetime import datetime
@@ -27,6 +28,7 @@ from skiclubs.models import Skiclubs
 from pages.models import Pages
 from rankings.models import Races
 from widgets.models import Widgets
+from angulation.models import Covers
 from blogs.models import (
     Bloggers,
     BlogPosts,
@@ -160,4 +162,16 @@ class WidgetsCreateReadView(ListCreateAPIView):
 class WidgetsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     queryset = Widgets.objects.all()
     serializer_class = WidgetsSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+
+class CoversCreateReadView(ListCreateAPIView):
+    queryset = Covers.objects.all()
+    serializer_class = CoversSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+
+class CoversReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+    queryset = Covers.objects.all()
+    serializer_class = CoversSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )

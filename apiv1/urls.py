@@ -86,4 +86,12 @@ urlpatterns = patterns(
     url(regex=r'^races/cat/(?P<category>.+)/$',
         view=apiv1.views.RacesCategoryCreateReadView.as_view(),
         name='REST View'),
+
+    url(regex=r'^angulation/covers/$',
+        view=apiv1.views.CoversCreateReadView.as_view(),
+        name='REST View'),
+
+    url(regex=r'^angulation/covers/(?P<pk>[-\w]+)/$',
+        view=apiv1.views.CoversReadUpdateDeleteView.as_view(),
+        name='REST View'),
 )
