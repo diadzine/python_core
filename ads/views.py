@@ -5,12 +5,15 @@ from cloudinary import (
 )
 
 from ads.models import Ads
+from rest_framework.authtoken.models import Token
 from pictures.views import connect
 
 
 @csrf_exempt
 def save(request):
-    # Check if user is connected.
+    token = request.META.get('HTTP_AUTHORIZATION')[6:]
+    if Token.objects.filter(key=token).first() is None:
+        return HttpResponse('Not logged in.')
     connect()
     if request.FILES.get('file'):
         image = request.FILES.get('file')
@@ -30,7 +33,8 @@ def save(request):
         ad.name = uploaded['public_id']
         ad.url = uploaded['url']
         ad.secureUrl = uploaded['secure_url']
-        ad.horizontal = 1 if request.POST.get('horizontal') == 'true' else 0
+        ad.horizontal = 1 if request.POST.get(
+            'horizontal') == 'true' else 0
         ad.vertical = 1 if request.POST.get('vertical') == 'true' else 0
         ad.square = 1 if request.POST.get('square') == 'true' else 0
         ad.save()
