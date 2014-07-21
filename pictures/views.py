@@ -17,7 +17,7 @@ def connect():
 
 @csrf_exempt
 def upload(request):
-    # Check if user is connected.
+    # Check if user is connected. -> use django rest api view decorator
     connect()
     if request.FILES.get('file'):
         image = request.FILES.get('file')

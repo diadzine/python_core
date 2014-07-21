@@ -27,6 +27,14 @@ urlpatterns = patterns(
         view=apiv1.views.NewsReadUpdateDeleteView.as_view(),
         name='REST View'),
 
+    url(regex=r'^news_admin/$',
+        view=apiv1.views.NewsAdminCreateReadView.as_view(),
+        name='REST View'),
+
+    url(regex=r'^news_admin/(?P<pk>[-\w]+)/$',
+        view=apiv1.views.NewsAdminReadUpdateDeleteView.as_view(),
+        name='REST View'),
+
     url(regex=r'^ads/$',
         view=apiv1.views.AdsCreateReadView.as_view(),
         name='REST View'),
