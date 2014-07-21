@@ -60,11 +60,17 @@ class NewsAdminCreateReadView(ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
     paginate_by = 10
 
+    def pre_save(self, obj):
+        obj.author = self.request.user.name
+
 
 class NewsAdminReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
+
+    def pre_save(self, obj):
+        obj.author = self.request.user.name
 
 
 class AdsCreateReadView(ListCreateAPIView):
