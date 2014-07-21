@@ -37,19 +37,19 @@ from blogs.models import (
 
 class NewsCreateReadView(ListCreateAPIView):
     queryset = News.objects.filter(
-        date__lte=datetime.now).order_by('date').reverse()
+        date__lte=datetime.now()).order_by('date').reverse()
     serializer_class = NewsSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
     paginate_by = 10
 
 
 class MagCreateReadView(NewsCreateReadView):
-    queryset = News.objects.filter(date__lte=datetime.now).filter(
+    queryset = News.objects.filter(date__lte=datetime.now()).filter(
         mag=1).order_by('date').reverse()
 
 
 class NewsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
-    queryset = News.objects.filter(date__lte=datetime.now)
+    queryset = News.objects.filter(date__lte=datetime.now())
     serializer_class = NewsSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
@@ -114,7 +114,7 @@ class BlogPostsCreateReadView(ListCreateAPIView):
 
     def get_queryset(self):
         blogger = self.kwargs['blogger']
-        return BlogPosts.objects.filter(blogId=blogger).filter(date__lte=datetime.now).order_by('date').reverse()
+        return BlogPosts.objects.filter(blogId=blogger).filter(date__lte=datetime.now()).order_by('date').reverse()
 
 
 class BlogPostsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
@@ -124,7 +124,7 @@ class BlogPostsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         blogger = self.kwargs['blogger']
         id = self.kwargs['pk']
-        return BlogPosts.objects.filter(blogId=blogger).filter(id=id).filter(date__lte=datetime.now)
+        return BlogPosts.objects.filter(blogId=blogger).filter(id=id).filter(date__lte=datetime.now())
 
 
 class SkiclubsCreateReadView(ListCreateAPIView):
