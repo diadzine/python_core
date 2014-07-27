@@ -10,7 +10,7 @@ class News(models.Model):
     content = models.TextField(null=True)
     mag = models.SmallIntegerField(null=True)
     date = models.DateTimeField(
-        auto_now_add=True,
+        auto_now_add=False,
         auto_now=False
     )
 
