@@ -1,4 +1,6 @@
 """
+Note: Make sure that wsgi.py is referencing this file, in case of error 400.
+
 Django settings for python_core project.
 
 For more information on this file, see
