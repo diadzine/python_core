@@ -16,6 +16,7 @@ sys.path.append(APP_DIR + '/')
 sys.path.append(MODULE_DIR + '/')
 sys.path.append(WEBAPPS_DIR + '/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
+from django.conf import settings
 
 # Other imports
 from scrapy.selector import Selector
