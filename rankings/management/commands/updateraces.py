@@ -10,15 +10,15 @@ from django.core.management.base import BaseCommand, CommandError
 # APP_DIR = os.path.abspath(os.path.join(BACKEND_DIR, os.pardir))
 # WEBAPPS_DIR = os.path.abspath(os.path.join(APP_DIR, os.pardir))
 
-# CURRENT_DIR = '/home/tooski/webapps/python_core/python_core/rankings/'
-# BACKEND_DIR = '/home/tooski/webapps/python_core/python_core/'
-# APP_DIR = '/home/tooski/webapps/python_core/'
-# WEBAPPS_DIR = '/home/tooski/webapps/'
+CURRENT_DIR = '/home/tooski/webapps/python_core/python_core/rankings/'
+BACKEND_DIR = '/home/tooski/webapps/python_core/python_core/'
+APP_DIR = '/home/tooski/webapps/python_core/'
+WEBAPPS_DIR = '/home/tooski/webapps/'
 #
-CURRENT_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/rankings/'
-BACKEND_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/'
-APP_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
-WEBAPPS_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
+# CURRENT_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/rankings/'
+# BACKEND_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/'
+# APP_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
+# WEBAPPS_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
 
 
 class Command(BaseCommand):
