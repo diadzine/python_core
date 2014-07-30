@@ -16,3 +16,16 @@ class News(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.title
+
+
+class OldNews(models.Model):
+    Titre = models.TextField(null=True)
+    Date = models.TextField(null=True)
+    Texte = models.TextField(null=True)
+    Auteur = models.TextField(null=True)
+    Analyse = models.BooleanField()
+    Resultats = models.BooleanField()
+    Interview = models.BooleanField()
+
+    def __unicode__(self):
+        return u'%s' % self.Titre
