@@ -30,7 +30,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['*.tooski.ch', '*.webfaction.com']
+ALLOWED_HOSTS = ['*', '*.tooski.ch', '*.webfaction.com']
 
 ADMINS = (
     ('Sebastien Arnold', 'seba-1511@hotmail.com'),
