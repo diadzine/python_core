@@ -15,6 +15,8 @@ sys.path.append(BACKEND_DIR + '/')
 sys.path.append(APP_DIR + '/')
 sys.path.append(MODULE_DIR + '/')
 sys.path.append(WEBAPPS_DIR + '/')
+# For webfaction server:
+sys.path.append('/home/tooski/webapps/python_core/lib/python2.7')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
 from django.conf import settings
 
