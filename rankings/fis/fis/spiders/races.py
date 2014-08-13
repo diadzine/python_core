@@ -97,5 +97,6 @@ class MyCrawlerSpider(BaseSpider):
             '//table[contains(@class, "footable table-datas table-withpadding")]')
         place = (len(tables) - 1)
         item['table'] = tables.extract()[place].strip()
-
+        if 'No results available' in item['table']:
+            return None
         return item
