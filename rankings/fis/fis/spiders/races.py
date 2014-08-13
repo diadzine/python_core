@@ -23,11 +23,11 @@ from django.conf import settings
 
 # Other imports
 from scrapy.selector import Selector
-
 from scrapy.spider import BaseSpider
 from scrapy.http import Request
 
 from fis.items import FisRaces
+from rankings.models import Races
 
 
 class MyCrawlerSpider(BaseSpider):
@@ -38,8 +38,7 @@ class MyCrawlerSpider(BaseSpider):
     allowed_domains = ['data.fis-ski.com']
 
     # Getting the last raceId we processed
-    # last_race = Races.objects.all().order_by('date').reverse().first()
-    last_race = 0
+    last_race = Races.objects.all().order_by('raceId').reverse().first()
     last_race = last_race.raceId if last_race else 0
     max_newsid = int(last_race)
 
