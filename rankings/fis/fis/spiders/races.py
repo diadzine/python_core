@@ -40,10 +40,11 @@ class MyCrawlerSpider(BaseSpider):
     # Getting the last raceId we processed
     last_race = Races.objects.all().order_by('raceId').reverse().first()
     last_race = last_race.raceId if last_race else 0
-    max_newsid = int(last_race)
+    max_newsid = 70973  # int(last_race)
+    jump = 1
 
     def start_requests(self):
-        for i in xrange(self.max_newsid, self.max_newsid + 1000):
+        for i in xrange(self.max_newsid, self.max_newsid + self.jump):
             yield Request(
                 'http://data.fis-ski.com/dynamic/results.html?sector=AL&raceid=%d' % i,
                 callback=self.parse_item)
@@ -92,7 +93,9 @@ class MyCrawlerSpider(BaseSpider):
         else:
             item['discipline'] = 'Other'
 
-        item['table'] = hxs.xpath(
-            '//table[contains(@class, "footable table-datas table-withpadding")]').extract()[2].strip()
+        tables = hxs.xpath(
+            '//table[contains(@class, "footable table-datas table-withpadding")]')
+        place = (len(tables) - 1)
+        item['table'] = tables.extract()[place].strip()
 
         return item
