@@ -163,7 +163,7 @@ class PagesReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
 class RacesCreateReadView(ListCreateAPIView):
     serializer_class = RacesSerializer
     permission_classes = (IsAuthenticatedOrReadOnly, )
-    queryset = Races.objects.all().order_by('date')
+    queryset = Races.objects.all().order_by('date').reverse()
     paginate_by = 20
 
 
@@ -171,7 +171,7 @@ class RacesCategoryCreateReadView(RacesCreateReadView):
 
     def get_queryset(self):
         category = self.kwargs['category']
-        return Races.objects.filter(category=category).order_by('date')
+        return Races.objects.filter(category=category).order_by('date').reverse()
 
 
 class RacesReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
