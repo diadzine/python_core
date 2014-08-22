@@ -26,10 +26,14 @@ class Bloggers(models.Model):
 class BlogPosts(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(null=True)
-    blogId = models.SmallIntegerField(null=True)
+    blogId = models.SmallIntegerField(
+        db_index=True,
+        null=True,
+    )
     date = models.DateTimeField(
         auto_now_add=False,
-        auto_now=False
+        auto_now=False,
+        db_index=True,
     )
 
     def __unicode__(self):

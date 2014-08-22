@@ -27,7 +27,7 @@ Each row is a race, with its general information. (Where, category, etc...)
 
 class Races(models.Model):
     info = models.TextField(max_length=255)
-    category = models.TextField(
+    category = models.CharField(
         db_index=True,
         max_length=255,
     )
