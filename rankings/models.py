@@ -3,6 +3,7 @@ import os
 import sys
 from django.db import models
 
+
 def getRankings():
     CURRENT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
     BACKEND_DIR = os.path.abspath(os.path.join(CURRENT_DIR, os.pardir))
@@ -26,14 +27,17 @@ Each row is a race, with its general information. (Where, category, etc...)
 
 class Races(models.Model):
     info = models.TextField(max_length=255)
-    category = models.TextField(max_length=255)
+    category = models.TextField(
+        db_index=True,
+        max_length=255,
+    )
     genre = models.TextField(max_length=255)
     link = models.TextField(max_length=511)
     location = models.TextField(max_length=255)
     discipline = models.TextField(max_length=255)
-    raceId = models.IntegerField()
+    raceId = models.IntegerField(db_index=True)
     table = models.TextField()
-    date = models.IntegerField()
+    date = models.IntegerField(db_index=True)
 
     def __unicode__(self):
         return u'%s' % self.info

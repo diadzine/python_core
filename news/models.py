@@ -8,10 +8,14 @@ class News(models.Model):
     title = models.CharField(max_length=255)
     author = models.TextField(null=True)
     content = models.TextField(null=True)
-    mag = models.SmallIntegerField(null=True)
+    mag = models.SmallIntegerField(
+        db_index=True,
+        null=True,
+    )
     date = models.DateTimeField(
         auto_now_add=False,
-        auto_now=False
+        auto_now=False,
+        db_index=True,
     )
 
     def __unicode__(self):
