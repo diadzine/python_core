@@ -1,9 +1,10 @@
 #-*- coding: utf-8 -*-
 
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse
 from django.contrib.syndication.views import Feed
 from django.core.serializers import serialize
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
 
 from news.models import News
 from users.views import isLoggedIn
@@ -55,13 +56,15 @@ def save(request):
     return HttpResponse('0')
 
 
-class LatestEntriesFeed(Feed):
+class RSSFeed(Feed):
     title = "Tooski.ch"
-    link = "/sitenews/"
-    description = "Les dernières nouvelles du ski alpin"
+    link = "http://www.tooski.ch/"
+    description = "Actualité sur la coupe du monde FIS de ski alpin."
+    author_name = 'Tooski'
+    now = timezone.now()
 
     def items(self):
-        return News.objects.order_by('date')[:25]
+        return News.objects.filter(date__lte=self.now).order_by('date').reverse()[:25]
 
     def item_title(self, item):
         return item.title
@@ -69,6 +72,8 @@ class LatestEntriesFeed(Feed):
     def item_description(self, item):
         return item.content
 
-    # item_link is only needed if News has no get_absolute_url method.
     def item_link(self, item):
         return 'http://www.tooski.ch/#!/News?id=%s' % item.id
+
+    def feed_copyright(self):
+        return 'Copyright 2009-2014 © seba-1511. Tous droits réservés.'
