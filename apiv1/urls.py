@@ -7,6 +7,7 @@ from django.conf.urls import (
 from rest_framework.authtoken.views import obtain_auth_token
 
 import apiv1.views
+import news.views
 
 urlpatterns = patterns(
     'apiv1.views',
@@ -17,6 +18,10 @@ urlpatterns = patterns(
 
     url(regex=r'^news/$',
         view=apiv1.views.NewsCreateReadView.as_view(),
+        name='REST View'),
+
+    url(regex=r'^news/rss/$',
+        view=news.views.RSSFeed(),
         name='REST View'),
 
     url(regex=r'^mag/$',

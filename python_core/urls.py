@@ -21,48 +21,48 @@ urlpatterns = patterns(
         include('apiv1.urls')
     ),
 
-    url(
-        r'^news/',
-        include('news.urls')
-    ),
+    # url(
+    #     r'^news/',
+    #     include('news.urls')
+    # ),
 
-    url(
-        r'^users/',
-        include('users.urls')
-    ),
+    # url(
+    #     r'^users/',
+    #     include('users.urls')
+    # ),
 
-    url(
-        r'^pages/',
-        include('pages.urls')
-    ),
+    # url(
+    #     r'^pages/',
+    #     include('pages.urls')
+    # ),
 
-    url(
-        r'^blogs/',
-        include('blogs.urls')
-    ),
+    # url(
+    #     r'^blogs/',
+    #     include('blogs.urls')
+    # ),
 
-    url(
-        r'^ads/',
-        include('ads.urls')
-    ),
+    # url(
+    #     r'^ads/',
+    #     include('ads.urls')
+    # ),
 
-    url(
-        r'^rankings/',
-        include('rankings.urls')
-    ),
+    # url(
+    #     r'^rankings/',
+    #     include('rankings.urls')
+    # ),
 
-    url(
-        r'^pictures/',
-        include('pictures.urls')
-    ),
+    # url(
+    #     r'^pictures/',
+    #     include('pictures.urls')
+    # ),
 
-    url(
-        r'^skiclubs/',
-        include('skiclubs.urls')
-    ),
+    # url(
+    #     r'^skiclubs/',
+    #     include('skiclubs.urls')
+    # ),
 
-    url(
-        r'^widgets/',
-        include('widgets.urls')
-    ),
+    # url(
+    #     r'^widgets/',
+    #     include('widgets.urls')
+    # ),
 )
