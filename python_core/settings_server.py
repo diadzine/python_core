@@ -114,13 +114,7 @@ DATABASES = {
 }
 
 # Cache
-# http://docs.webfaction.com/software/django/config.html#configuring-django-to-use-memcached
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': 'unix:/home/tooski/memcached.sock',
-    }
-}
+CACHE_BACKEND = 'memcached://unix:/home/tooski/memcached.sock'
 
 
 # URLs
