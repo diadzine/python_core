@@ -105,6 +105,9 @@ DATABASES = {
     }
 }
 
+# Cache
+CACHE_BACKEND = 'dummy:///'
+
 # URLs
 ROOT_URLCONF = 'python_core.urls'
 

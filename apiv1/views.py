@@ -21,6 +21,7 @@ from apiv1.serializers import (
 )
 
 from django.utils import timezone
+from django.core.cache import cache
 
 from news.models import News
 from ads.models import Ads
@@ -171,6 +172,17 @@ class RacesCategoryCreateReadView(RacesCreateReadView):
 
     def get_queryset(self):
         category = self.kwargs['category']
+        page = self.request.GET.get('page')
+        if page is not None and int(page) in [1, 2, 3, 4]:
+            page = int(page)
+            key = 'race' + category
+            start = 0
+            end = (5 * self.paginate_by)
+            if cache.get(key) is None:
+                races = Races.objects.filter(
+                    category=category).order_by('date').reverse()
+                cache.set(key, races, 3600)
+            return cache.get(key)[start:end]
         return Races.objects.filter(category=category).order_by('date').reverse()
 
 
