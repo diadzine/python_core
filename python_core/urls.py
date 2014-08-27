@@ -41,20 +41,20 @@ urlpatterns = patterns(
     #     include('blogs.urls')
     # ),
 
-    # url(
-    #     r'^ads/',
-    #     include('ads.urls')
-    # ),
+    url(
+        r'^ads/',
+        include('ads.urls')
+    ),
 
     # url(
     #     r'^rankings/',
     #     include('rankings.urls')
     # ),
 
-    # url(
-    #     r'^pictures/',
-    #     include('pictures.urls')
-    # ),
+    url(
+        r'^pictures/',
+        include('pictures.urls')
+    ),
 
     # url(
     #     r'^skiclubs/',
