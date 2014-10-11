@@ -5,6 +5,8 @@ python:
   - "3.2"
   - "3.3"
 # command to install dependencies
-install: "pip install -r req.txt"
+install: 
+  - pip install -r req.txt
 # command to run tests
-script: python manage.py test
+script: 
+  - python manage.py test
