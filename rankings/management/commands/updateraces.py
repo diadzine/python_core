@@ -16,10 +16,10 @@ APP_DIR = '/home/tooski/webapps/python_core/'
 WEBAPPS_DIR = '/home/tooski/webapps/'
 
 # For dev:
-CURRENT_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/rankings/'
-BACKEND_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/'
-APP_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
-WEBAPPS_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
+# CURRENT_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/rankings/'
+# BACKEND_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/'
+# APP_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
+# WEBAPPS_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
 
 
 class Command(BaseCommand):
