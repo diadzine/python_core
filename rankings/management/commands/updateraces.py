@@ -3,27 +3,28 @@ import os
 import shutil
 
 from django.core.management.base import BaseCommand, CommandError
-# from polls.models import Poll
 
 # CURRENT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 # BACKEND_DIR = os.path.abspath(os.path.join(CURRENT_DIR, os.pardir))
 # APP_DIR = os.path.abspath(os.path.join(BACKEND_DIR, os.pardir))
 # WEBAPPS_DIR = os.path.abspath(os.path.join(APP_DIR, os.pardir))
 
+# For production:
 CURRENT_DIR = '/home/tooski/webapps/python_core/python_core/rankings/'
 BACKEND_DIR = '/home/tooski/webapps/python_core/python_core/'
 APP_DIR = '/home/tooski/webapps/python_core/'
 WEBAPPS_DIR = '/home/tooski/webapps/'
-#
-# CURRENT_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/rankings/'
-# BACKEND_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/'
-# APP_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
-# WEBAPPS_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
+
+# For dev:
+CURRENT_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/rankings/'
+BACKEND_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/'
+APP_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
+WEBAPPS_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
 
 
 class Command(BaseCommand):
-    args = '<poll_id poll_id ...>'
-    help = 'Closes the specified poll for voting'
+    args = 'None'
+    help = 'Updates the table to the latest races, directly scrapped from the FIS website.'
 
     def handle(self, *args, **options):
 

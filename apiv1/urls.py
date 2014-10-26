@@ -8,6 +8,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 import apiv1.views
 import news.views
+import rankings.views
 
 urlpatterns = patterns(
     'apiv1.views',
@@ -89,16 +90,28 @@ urlpatterns = patterns(
         name='REST View'),
 
     url(regex=r'^races/$',
-        view=apiv1.views.RacesCreateReadView.as_view(),
+        view=rankings.views.last_races,
         name='REST View'),
 
     url(regex=r'^races/(?P<pk>[-\w]+)/$',
-        view=apiv1.views.RacesReadUpdateDeleteView.as_view(),
+        view=rankings.views.race,
         name='REST View'),
 
     url(regex=r'^races/cat/(?P<category>.+)/$',
-        view=apiv1.views.RacesCategoryCreateReadView.as_view(),
+        view=rankings.views.race_category,
         name='REST View'),
+
+    # url(regex=r'^races/$',
+    #     view=apiv1.views.RacesCreateReadView.as_view(),
+    #     name='REST View'),
+
+    # url(regex=r'^races/(?P<pk>[-\w]+)/$',
+    #     view=apiv1.views.RacesReadUpdateDeleteView.as_view(),
+    #     name='REST View'),
+
+    # url(regex=r'^races/cat/(?P<category>.+)/$',
+    #     view=apiv1.views.RacesCategoryCreateReadView.as_view(),
+    #     name='REST View'),
 
     url(regex=r'^angulation/covers/$',
         view=apiv1.views.CoversCreateReadView.as_view(),
