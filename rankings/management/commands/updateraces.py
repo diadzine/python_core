@@ -27,15 +27,14 @@ class Command(BaseCommand):
     help = 'Updates the table to the latest races, directly scrapped from the FIS website.'
 
     def handle(self, *args, **options):
-
+        os.remove(WEBAPPS_DIR + 'website/ranking.json')
+        os.remove(CURRENT_DIR + 'fis/ranking.json')
 # We get the leaderboard rankings and move them to the Apache server:
         os.system('cd ' + CURRENT_DIR +
                   '/fis/ && scrapy crawl ranking -o ranking.json -t json')
         # Testing:
-        os.remove(WEBAPPS_DIR + '/website/ranking.json')
-        os.remove(CURRENT_DIR + '/fis/ranking.json')
-        shutil.copy(CURRENT_DIR + '/fis/ranking.json',
-                    WEBAPPS_DIR + '/website/ranking.json')
+        shutil.copy(CURRENT_DIR + 'fis/ranking.json',
+                    WEBAPPS_DIR + 'website/ranking.json')
         # Server
         # shutil.copy(CURRENT_DIR + '/fis/ranking.json',
         #             WEBAPPS_DIR + '/website/ranking.json')
