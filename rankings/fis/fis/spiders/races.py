@@ -42,9 +42,10 @@ class MyCrawlerSpider(BaseSpider):
     last_race = last_race.raceId if last_race else 0
     max_newsid = int(last_race)
     jump = 3000
+    Races.objects.filter(raceId__gte=(max_newsid - jump)).delete()
 
     def start_requests(self):
-        for i in xrange(self.max_newsid, self.max_newsid + self.jump):
+        for i in xrange(self.max_newsid - self.jump, self.max_newsid + self.jump):
             yield Request(
                 'http://data.fis-ski.com/dynamic/results.html?sector=AL&raceid=%d' % i,
                 callback=self.parse_item)
