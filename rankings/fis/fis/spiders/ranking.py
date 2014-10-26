@@ -29,7 +29,8 @@ class RankingSpider(BaseSpider):
         rows = hxs.xpath('//div[contains(@class, "dcm-leaderBoard")]//tr')
         men = []
         women = []
-        men_flag = 0
+        men_flag = False
+        previous_row = 0
         for row in rows:
             name = row.xpath(
                 'td/div/a/span[contains(@class, "dcm-athName")]/text()').extract()
@@ -41,9 +42,10 @@ class RankingSpider(BaseSpider):
                 score = row[2]
                 name = name[0]
                 country = country[0]
-                if int(row[0]) == 1:
-                    men_flag += 1
-                if men_flag >= 2:
+                if int(row[0]) < previous_row:
+                    men_flag = True
+                previous_row = int(row[0])
+                if men_flag:
                     men.append([place, name, country, score])
                 else:
                     women.append([place, name, country, score])
