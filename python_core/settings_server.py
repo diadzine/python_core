@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    "pageviews",
     # 'corsheaders',
     # Custom Apps
     'news',
@@ -75,6 +76,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',
+
+    # Django Pageviews:
+    "pageviews.middleware.PageViewsMiddleware",
 
     # Django Cors:
     'corsheaders.middleware.CorsMiddleware',
