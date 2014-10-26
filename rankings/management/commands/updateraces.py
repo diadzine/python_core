@@ -32,6 +32,8 @@ class Command(BaseCommand):
         os.system('cd ' + CURRENT_DIR +
                   '/fis/ && scrapy crawl ranking -o ranking.json -t json')
         # Testing:
+        os.remove(WEBAPPS_DIR + '/website/ranking.json')
+        os.remove(CURRENT_DIR + '/fis/ranking.json')
         shutil.copy(CURRENT_DIR + '/fis/ranking.json',
                     WEBAPPS_DIR + '/website/ranking.json')
         # Server
