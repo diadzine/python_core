@@ -41,7 +41,7 @@ def race_category(request, category):
     if category not in ['WC', 'EC', 'FIS']:
         return Http404
     page = request.GET.get('page')
-    page = 0 if page is None else int(page - 1)
+    page = 0 if page is None else (int(page) - 1)
     offset = RACES_PER_VIEW * page
     cursor = connection.cursor()
     query = "SELECT id, info, category, genre, link, location, discipline, raceId, date FROM rankings_races WHERE category='" + \
