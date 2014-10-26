@@ -41,7 +41,7 @@ class MyCrawlerSpider(BaseSpider):
     last_race = Races.objects.all().order_by('raceId').reverse().first()
     last_race = last_race.raceId if last_race else 0
     max_newsid = int(last_race)
-    jump = 10000
+    jump = 3000
 
     def start_requests(self):
         for i in xrange(self.max_newsid, self.max_newsid + self.jump):
