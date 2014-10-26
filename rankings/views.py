@@ -41,27 +41,14 @@ def race_category(request, category):
     if category not in ['WC', 'EC', 'FIS']:
         return Http404
     page = request.GET.get('page')
-    races = None
-    page = 0 if page is None else page
+    page = 0 if page is None else page - 1
     offset = RACES_PER_VIEW * page
-
-    if page is not None and int(page) in [1, 2, 3, 4]:
-        page = int(page)
-        key = 'race' + category
-        start = 0
-        end = (5 * RACES_PER_VIEW)
-        races = cache.get(key)[start:end]
-
-    if races is None:
-        cursor = connection.cursor()
-        query = "SELECT id, info, category, genre, link, location, discipline, raceId, date FROM rankings_races WHERE category='" + \
-            category + "' ORDER BY date DESC LIMIT " + \
-                str(offset) + ", " + str(RACES_PER_VIEW) + ";"
-        cursor.execute(query)
-        races = dictfetchall(cursor)
-        if page is not None and int(page) in [1, 2, 3, 4]:
-            cache.set(key, races, 3600)
-
+    cursor = connection.cursor()
+    query = "SELECT id, info, category, genre, link, location, discipline, raceId, date FROM rankings_races WHERE category='" + \
+        category + "' ORDER BY date DESC LIMIT " + \
+            str(offset) + ", " + str(RACES_PER_VIEW) + ";"
+    cursor.execute(query)
+    races = dictfetchall(cursor)
     races = ujson.dumps(races, encode_html_chars=False, ensure_ascii=False)
     res = HttpResponse(
         races,
