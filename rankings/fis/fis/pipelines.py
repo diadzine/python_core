@@ -40,5 +40,8 @@ class FisPipeline(object):
         race.raceId = item['id']
         race.table = item['table'].strip()
         race.date = mktime(strptime(item['date'].strip(), '%d.%m.%Y'))
-        race.save()
+        race.save
+        previous, created = Races.objects.get_or_create(raceId=id)
+        previous = race
+        previous.save()
         return item
