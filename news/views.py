@@ -76,4 +76,4 @@ class RSSFeed(Feed):
         return 'http://www.tooski.ch/#!/News?n=%s' % item.id
 
     def feed_copyright(self):
-        return 'Copyright 2009-2014 © seba-1511. Tous droits réservés.'
+        return 'Copyright 2009-2015 © seba-1511. Tous droits réservés.'

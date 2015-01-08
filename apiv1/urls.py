@@ -9,6 +9,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 import apiv1.views
 import news.views
 import rankings.views
+import blogs.views
 
 urlpatterns = patterns(
     'apiv1.views',
@@ -51,6 +52,10 @@ urlpatterns = patterns(
 
     url(regex=r'^bloggers/$',
         view=apiv1.views.BloggersCreateReadView.as_view(),
+        name='REST View'),
+
+    url(regex=r'^bloggers/rss/$',
+        view=blogs.views.BlogsRSS(),
         name='REST View'),
 
     url(regex=r'^bloggers/(?P<pk>[-\w]+)/$',

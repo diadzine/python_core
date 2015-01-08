@@ -3,6 +3,8 @@
 from django.http import HttpResponse, Http404
 from django.core.serializers import serialize
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.syndication.views import Feed
+from django.utils import timezone
 
 from blogs.models import Bloggers, BlogPosts
 from users.views import isLoggedIn
@@ -65,6 +67,7 @@ def saveBlogger(request):
             return HttpResponse(serialize('json', blogger))
     return HttpResponse('0')
 
+
 @csrf_exempt
 def savePost(request):
     if isLoggedIn(request):
@@ -87,6 +90,7 @@ def savePost(request):
             return HttpResponse(serialize('json', post))
     return HttpResponse('0')
 
+
 def deleteBlogger(request):
     bloggerId = int(request.GET.get('id'))
     if bloggerId:
@@ -96,6 +100,7 @@ def deleteBlogger(request):
             return HttpResponse('1')
     return HttpResponse('0')
 
+
 def deletePost(request):
     postId = int(request.GET.get('id'))
     if postId:
@@ -104,3 +109,26 @@ def deletePost(request):
             post.delete()
             return HttpResponse('1')
     return HttpResponse('0')
+
+
+class BlogsRSS(Feed):
+    title = "Tooski Bloggers"
+    link = "http://tooski.ch/"
+    description = "Les blogs de Tooski"
+    author_name = 'Tooski'
+    now = timezone.now()
+
+    def items(self):
+        return BlogPosts.objects.filter(date__lte=self.now).order_by('date').reverse()[:25]
+
+    def item_title(self, item):
+        return item.title
+
+    def item_description(self, item):
+        return item.content
+
+    def item_link(self, item):
+        return 'http://tooski.ch/#!/Blog?id=%s' % item.blogId
+
+    def feed_copyright(self):
+        return 'Copyright 2009-2015 © seba-1511. Tous droits réservés.'
