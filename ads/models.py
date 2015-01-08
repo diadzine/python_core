@@ -7,7 +7,7 @@ class Ads(models.Model):
     name = models.CharField(max_length=510)
     url = models.TextField(null=True)
     secureUrl = models.TextField(null=True)
-    link = models.TextField(null=True)
+    link = models.TextField(null=True, default='')
     horizontal = models.PositiveSmallIntegerField(null=True)
     vertical = models.PositiveSmallIntegerField(null=True)
     square = models.PositiveSmallIntegerField(null=True)

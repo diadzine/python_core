@@ -27,9 +27,9 @@ class OldNews(models.Model):
     Date = models.TextField(null=True)
     Texte = models.TextField(null=True)
     Auteur = models.TextField(null=True)
-    Analyse = models.BooleanField()
-    Resultats = models.BooleanField()
-    Interview = models.BooleanField()
+    Analyse = models.BooleanField(default=False)
+    Resultats = models.BooleanField(default=False)
+    Interview = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u'%s' % self.Titre
