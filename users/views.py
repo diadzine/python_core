@@ -5,7 +5,7 @@ from time import strftime
 from django.http import HttpResponse, Http404
 from django.core.serializers import serialize
 
-from users.models import CustomUser
+from models import CustomUser
 
 
 def isLoggedIn(request):
