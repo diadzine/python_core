@@ -26,18 +26,20 @@ Each row is a race, with its general information. (Where, category, etc...)
 
 
 class Races(models.Model):
-    info = models.TextField(max_length=255)
+    info = models.TextField(max_length=255, null=True, blank=True)
     category = models.CharField(
         db_index=True,
         max_length=255,
+        null=True,
+        blank=True,
     )
-    genre = models.TextField(max_length=255)
-    link = models.TextField(max_length=511)
-    location = models.TextField(max_length=255)
-    discipline = models.TextField(max_length=255)
-    raceId = models.IntegerField(db_index=True)
+    genre = models.TextField(max_length=255, null=True, blank=True)
+    link = models.TextField(max_length=511, null=True, blank=True)
+    location = models.TextField(max_length=255, null=True, blank=True)
+    discipline = models.TextField(max_length=255, null=True, blank=True)
+    raceId = models.IntegerField(db_index=True, null=True, blank=True)
     table = models.TextField()
-    date = models.IntegerField(db_index=True)
+    date = models.IntegerField(db_index=True, null=True, blank=True)
 
     def __unicode__(self):
         return u'%s' % self.info

@@ -26,11 +26,11 @@ from rankings.models import Races
 class FisPipeline(object):
 
     def process_item(self, item, spider):
-        if spider.name not in ['races']:
+        if spider.name not in ['races'] or int(item['id']) < 0:
             return item
 
         # Here we'll register the current item in the database:
-        race = Races()
+        race, created = Races.objects.get_or_create(raceId=int(item['id']))
         race.info = item['info'].strip()
         race.category = item['category'].strip()
         race.genre = item['genre'].strip()
@@ -40,8 +40,5 @@ class FisPipeline(object):
         race.raceId = item['id']
         race.table = item['table'].strip()
         race.date = mktime(strptime(item['date'].strip(), '%d.%m.%Y'))
-        race.save
-        previous, created = Races.objects.get_or_create(raceId=id)
-        previous = race
-        previous.save()
+        race.save()
         return item
