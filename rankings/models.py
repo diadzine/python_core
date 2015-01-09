@@ -38,7 +38,7 @@ class Races(models.Model):
     location = models.TextField(max_length=255, null=True, blank=True)
     discipline = models.TextField(max_length=255, null=True, blank=True)
     raceId = models.IntegerField(db_index=True, null=True, blank=True)
-    table = models.TextField()
+    table = models.TextField(null=True, blank=True)
     date = models.IntegerField(db_index=True, null=True, blank=True)
 
     def __unicode__(self):
