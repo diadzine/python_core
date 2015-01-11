@@ -128,7 +128,7 @@ class BlogsRSS(Feed):
         return item.content
 
     def item_link(self, item):
-        return 'http://tooski.ch/#!/Blog?id=%s' % item.blogId
+        return 'http://tooski.ch/#!/Blog?id=%s&post=%s' % (item.blogId, item.id)
 
     def feed_copyright(self):
         return 'Copyright 2009-2015 © seba-1511. Tous droits réservés.'
