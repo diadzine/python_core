@@ -98,6 +98,10 @@ urlpatterns = patterns(
         view=rankings.views.last_races,
         name='REST View'),
 
+    url(regex=r'^races/update/$',
+        view=rankings.views.update,
+        name='REST View'),
+
     url(regex=r'^races/(?P<pk>[-\w]+)/$',
         view=rankings.views.race,
         name='REST View'),

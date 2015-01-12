@@ -3,6 +3,7 @@ import ujson
 
 from django.http import HttpResponse, Http404
 from django.core.cache import cache
+from django.core.management import call_command
 from django.db import connection
 
 RACES_PER_VIEW = 25
@@ -55,6 +56,11 @@ def race_category(request, category):
         content_type="application/json"
     )
     return res
+
+
+def update(request):
+    call_command('updateraces', verbosity=3, interactive=False)
+    return HttpResponse('1')
 
 
 def dictfetchall(cursor):
