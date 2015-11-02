@@ -1,10 +1,20 @@
 # -*- coding: utf-8 -*-
+import urlparse
 from scrapy.selector import Selector
 
 from scrapy.spider import BaseSpider
 from scrapy.http import Request
 
 from fis.items import FisRanking
+
+
+def board_section(url):
+    path_sections = urlparse.urlparse(url).path.split('/')
+
+    while path_sections[-1] == '':
+        path_sections = path_sections[:-1]
+
+    return path_sections[-1]
 
 
 class RankingSpider(BaseSpider):
@@ -18,13 +28,30 @@ class RankingSpider(BaseSpider):
         # When saving, the file should be moved to the root of /website.
         # So that the js can parse, it is directly served by Apache and doesn't
         # require connection to th DB. Use shutil.copy(src, dest)
-        yield Request('http://www.fis-ski.com/alpine-skiing/leader-board/',
-                      callback=self.parse_item)
+        board_paths = (
+            '',
+            'downhill/',
+            'slalom/',
+            'giant-slalom/',
+            'super-g/',
+            'combined/',
+        )
+        for path in board_paths:
+            yield Request(
+                'http://www.fis-ski.com/alpine-skiing/leader-board/%s' % path,
+                callback=self.parse_item
+            )
 
     def parse_item(self, response):
         hxs = Selector(response)
         item = FisRanking()
         item['link'] = response.url
+        board_name = board_section(response.url)
+
+        if board_name != 'leader-board':
+            item['id'] = board_name
+        else:
+            item['id'] = 'overall'
 
         rows = hxs.xpath('//div[contains(@class, "dcm-leaderBoard")]//tr')
         men = []
