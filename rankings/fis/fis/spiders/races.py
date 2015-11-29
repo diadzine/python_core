@@ -25,7 +25,7 @@ from django.conf import settings
 
 # Other imports
 from scrapy.selector import Selector
-from scrapy.spiders import BaseSpider
+from scrapy.spider import BaseSpider
 from scrapy.http import Request
 
 from fis.items import FisRaces
@@ -48,7 +48,7 @@ class MyCrawlerSpider(BaseSpider):
     jump = 3000
 
     def start_requests(self):
-        for i in xrange(self.max_newsid - self.jump, self.max_newsid + self.jump):
+        for i in xrange(self.max_newsid, self.max_newsid + self.jump):
             yield Request(
                 'http://data.fis-ski.com/dynamic/results.html?sector=AL&raceid=%d' % i,
                 callback=self.parse_item)
