@@ -3,7 +3,6 @@
 
 import os
 import sys
-import django
 
 CURRENT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 SPIDERS_DIR = os.path.abspath(os.path.join(CURRENT_DIR, os.pardir))
@@ -31,8 +30,6 @@ from scrapy.http import Request
 from fis.items import FisRaces
 from rankings.models import Races
 
-
-django.setup()
 
 class MyCrawlerSpider(BaseSpider):
     # nom du crawler à spécifier lors de l'exécution
