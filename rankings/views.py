@@ -43,11 +43,12 @@ def race_category(request, category):
         return Http404
     page = request.GET.get('page')
     page = 0 if page is None else (int(page) - 1)
-    offset = RACES_PER_VIEW * page
+    nb_races = RACES_PER_VIEW * 2 if 'FIS' in category else RACES_PER_VIEW
+    offset = nb_races * page
     cursor = connection.cursor()
     query = "SELECT id, info, category, genre, link, location, discipline, raceId, date FROM rankings_races WHERE category='" + \
         category + "' ORDER BY date DESC LIMIT " + \
-            str(offset) + ", " + str(RACES_PER_VIEW) + ";"
+            str(offset) + ", " + str(nb_races) + ";"
     cursor.execute(query)
     races = dictfetchall(cursor)
     races = ujson.dumps(races, encode_html_chars=False, ensure_ascii=False)

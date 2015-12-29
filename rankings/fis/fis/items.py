@@ -19,6 +19,7 @@ class FisRaces(Item):
 
 
 class FisRanking(Item):
+    id = Field()
     link = Field()
     info = Field()
     men = Field()

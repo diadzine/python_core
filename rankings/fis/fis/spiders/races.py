@@ -3,6 +3,7 @@
 
 import os
 import sys
+
 CURRENT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 SPIDERS_DIR = os.path.abspath(os.path.join(CURRENT_DIR, os.pardir))
 SCRAPY_DIR = os.path.abspath(os.path.join(SPIDERS_DIR, os.pardir))
@@ -44,7 +45,7 @@ class MyCrawlerSpider(BaseSpider):
     jump = 3000
 
     def start_requests(self):
-        for i in xrange(self.max_newsid - self.jump, self.max_newsid + self.jump):
+        for i in xrange(self.max_newsid, self.max_newsid + self.jump):
             yield Request(
                 'http://data.fis-ski.com/dynamic/results.html?sector=AL&raceid=%d' % i,
                 callback=self.parse_item)
