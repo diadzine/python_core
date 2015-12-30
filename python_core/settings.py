@@ -142,3 +142,46 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+        'spider': {
+            'format': '%(asctime)s - %(levelname)s - %(message)s'
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'spider': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 'spider'),
+            'when': 'midnight',
+            'formatter': 'spider',
+            'backupCount': 5,
+        },
+    },
+    'loggers': {
+        'dev': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'spider': {
+            'handlers': ['console', 'spider'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
