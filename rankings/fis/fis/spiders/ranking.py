@@ -6,6 +6,10 @@ from scrapy.spider import BaseSpider
 from scrapy.http import Request
 
 from fis.items import FisRanking
+import logging
+
+
+logger = logging.getLogger('spider')
 
 
 def board_section(url):
@@ -58,20 +62,29 @@ class RankingSpider(BaseSpider):
         women = []
         men_flag = False
         previous_row = 0
+
         for row in rows:
             name = row.xpath(
-                'td/div/a/span[contains(@class, "dcm-athName")]/text()').extract()
+                'td/div/a/span[contains(@class, "dcm-athName")]/text()'
+            ).extract()
+
             country = row.xpath(
-                'td/div/div[contains(@class, "dcm-noc")]/text()').extract()
+                'td/div/div[contains(@class, "dcm-noc")]/text()'
+            ).extract()
+
             row = row.xpath('td/text()').extract()
+
             if row and int(row[0]) <= 25:
                 place = row[0]
                 score = row[2]
                 name = name[0]
                 country = country[0]
+
                 if int(row[0]) < previous_row:
                     men_flag = True
+
                 previous_row = int(row[0])
+
                 if men_flag:
                     men.append([place, name, country, score])
                 else:
@@ -79,4 +92,5 @@ class RankingSpider(BaseSpider):
 
         item['men'] = men
         item['women'] = women
+
         return item

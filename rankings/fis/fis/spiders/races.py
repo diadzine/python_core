@@ -29,6 +29,10 @@ from scrapy.http import Request
 
 from fis.items import FisRaces
 from rankings.models import Races
+import logging
+
+
+logger = logging.getLogger('spider')
 
 
 class MyCrawlerSpider(BaseSpider):
@@ -47,8 +51,10 @@ class MyCrawlerSpider(BaseSpider):
     def start_requests(self):
         for i in xrange(self.max_newsid, self.max_newsid + self.jump):
             yield Request(
-                'http://data.fis-ski.com/dynamic/results.html?sector=AL&raceid=%d' % i,
-                callback=self.parse_item)
+                'http://data.fis-ski.com/dynamic/'
+                'results.html?sector=AL&raceid=%d' % i,
+                callback=self.parse_item
+            )
 
     def parse_item(self, response):
         hxs = Selector(response)
@@ -56,13 +62,27 @@ class MyCrawlerSpider(BaseSpider):
         url = response.url
         item['link'] = url
         item['id'] = url[url.index('raceid=') + 7:]
-        item['date'] = hxs.xpath(
-            '//div[contains(@class, "padding-content")]/h3/span/text()').extract()[0].strip()
-        item['location'] = hxs.xpath(
-            '//div[contains(@class, "padding-content")]/h3/a/text()').extract()[0].strip()
 
-        info = hxs.xpath(
-            '//div[contains(@class, "padding-content")]/div/div/h4/text()').extract()[0].strip()
+        try:
+            item['date'] = hxs.xpath(
+                '//div[contains(@class, "padding-content")]'
+                '/h3/span/text()'
+            ).extract()[0].strip()
+
+            item['location'] = hxs.xpath(
+                '//div[contains(@class, "padding-content")]'
+                '/h3/a/text()'
+            ).extract()[0].strip()
+
+            info = hxs.xpath(
+                '//div[contains(@class, "padding-content")]'
+                '/div/div/h4/text()'
+            ).extract()[0].strip()
+
+        except IndexError:
+            logger.warning('No data to parse on race #%s' % item['id'])
+            return None
+
         item['info'] = info
         item['genre'] = 'H' if 'Men' in info else 'F'
 
@@ -95,9 +115,15 @@ class MyCrawlerSpider(BaseSpider):
             item['discipline'] = 'Other'
 
         tables = hxs.xpath(
-            '//table[contains(@class, "footable table-datas table-withpadding")]')
+            '//table[contains(@class, "footable table-datas '
+            'table-withpadding")]'
+        )
+
         place = (len(tables) - 1)
         item['table'] = tables.extract()[place].strip()
+
         if 'No results available' in item['table']:
+            logger.warning('No result available for race #%s' % item['id'])
             return None
+
         return item
