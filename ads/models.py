@@ -1,6 +1,6 @@
 from django.db import models
-
-# Create your models here.
+from django.conf import settings
+from multiselectfield import MultiSelectField
 
 
 class Ads(models.Model):
@@ -8,6 +8,7 @@ class Ads(models.Model):
     url = models.TextField(null=True)
     secureUrl = models.TextField(null=True)
     link = models.TextField(null=True, default='')
+    placeholders = MultiSelectField(choices=settings.ADS_PLACEHOLDERS)
     horizontal = models.PositiveSmallIntegerField(null=True)
     vertical = models.PositiveSmallIntegerField(null=True)
     square = models.PositiveSmallIntegerField(null=True)
