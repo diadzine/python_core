@@ -87,7 +87,10 @@ class AdsCreateReadView(ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
     def get_queryset(self):
-        if self.request.GET.get('category'):
+        if self.request.GET.get('placeholder'):
+            placeholder = self.request.GET.get('placeholder')
+            return Ads.objects.filter(placeholders__constains=placeholder)
+        elif self.request.GET.get('category'):
             cat = self.request.GET.get('category')
             if cat == 'square':
                 return Ads.objects.filter(square=1)
