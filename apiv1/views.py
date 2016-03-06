@@ -89,7 +89,7 @@ class AdsCreateReadView(ListCreateAPIView):
     def get_queryset(self):
         if self.request.GET.get('placeholder'):
             placeholder = self.request.GET.get('placeholder')
-            return Ads.objects.filter(placeholders__constains=placeholder)
+            return Ads.objects.filter(placeholders__contains=placeholder)
         elif self.request.GET.get('category'):
             cat = self.request.GET.get('category')
             if cat == 'square':
