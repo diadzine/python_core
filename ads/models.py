@@ -8,7 +8,11 @@ class Ads(models.Model):
     url = models.TextField(null=True)
     secureUrl = models.TextField(null=True)
     link = models.TextField(null=True, default='')
-    placeholders = MultiSelectField(choices=settings.ADS_PLACEHOLDERS)
+    placeholders = MultiSelectField(
+        choices=settings.ADS_PLACEHOLDERS,
+        null=True,
+        blank=True,
+    )
     horizontal = models.PositiveSmallIntegerField(null=True)
     vertical = models.PositiveSmallIntegerField(null=True)
     square = models.PositiveSmallIntegerField(null=True)
