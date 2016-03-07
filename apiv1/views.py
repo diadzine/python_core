@@ -87,18 +87,18 @@ class AdsCreateReadView(ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
     def get_queryset(self):
-        if self.request.GET.get('placeholder'):
-            placeholder = self.request.GET.get('placeholder')
-            return Ads.objects.filter(placeholders__contains=placeholder)
-        elif self.request.GET.get('category'):
-            cat = self.request.GET.get('category')
-            if cat == 'square':
-                return Ads.objects.filter(square=1)
-            if cat == 'horizontal':
-                return Ads.objects.filter(horizontal=1)
-            if cat == 'vertical':
-                return Ads.objects.filter(vertical=1)
-        return Ads.objects.all()
+        placeholder = self.request.GET.get('placeholder', '')
+        category = self.request.GET.get('category', None)
+
+        if category is not None:
+            ads = Ads.objects.by_placeholder_and_category(
+                placeholder,
+                category
+            )
+        else:
+            ads = Ads.objects.all()
+
+        return ads
 
 
 class AdsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
