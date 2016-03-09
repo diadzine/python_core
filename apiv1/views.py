@@ -22,7 +22,7 @@ from apiv1.serializers import (
 
 from django.utils import timezone
 from django.core.cache import cache
-
+from django.conf import settings
 from news.models import News
 from ads.models import Ads
 from skiclubs.models import Skiclubs
@@ -87,16 +87,20 @@ class AdsCreateReadView(ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
     def get_queryset(self):
+        ads = []
         placeholder = self.request.GET.get('placeholder', '')
-        category = self.request.GET.get('category', None)
+        ads_placeholders = getattr(settings, 'ADS_PLACEHOLDERS', None)
 
-        if category is not None:
-            ads = Ads.objects.by_placeholder_and_category(
-                placeholder,
-                category
-            )
-        else:
-            ads = Ads.objects.all()
+        if placeholder == '' or placeholder in dict(ads_placeholders).keys():
+            category = self.request.GET.get('category', None)
+
+            if category is not None:
+                ads = Ads.objects.by_placeholder_and_category(
+                    placeholder,
+                    category
+                )
+            else:
+                ads = Ads.objects.all()
 
         return ads
 
