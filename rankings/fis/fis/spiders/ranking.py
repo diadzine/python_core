@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+        # -*- coding: utf-8 -*-
 import urlparse
 from scrapy.selector import Selector
 
@@ -45,6 +45,7 @@ class RankingSpider(BaseSpider):
                 'http://www.fis-ski.com/alpine-skiing/leader-board/%s' % path,
                 callback=self.parse_item
             )
+        logger.warning(path)
 
     def parse_item(self, response):
         hxs = Selector(response)
@@ -92,5 +93,4 @@ class RankingSpider(BaseSpider):
 
         item['men'] = men
         item['women'] = women
-
         return item
