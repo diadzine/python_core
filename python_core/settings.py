@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for python_core project.
 
@@ -61,6 +62,7 @@ INSTALLED_APPS = (
     'skiclubs',
     'widgets',
     'angulation',
+    'multiselectfield',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -185,3 +187,22 @@ LOGGING = {
         },
     },
 }
+
+
+ADS_PLACEHOLDERS = (
+    ('sides', "Toutes les pages, de chaque côté"),
+    # ('actu-top', "Page Actu, haut de page"),
+    # ('actu-side', "Page Actu, colonne droite"),
+    # ('actu-bottom', "Page Actu, base de page"),
+    # ('results-top', "Pages Résultats, haut de page"),
+    # ('results-side', "Pages Résultats, colonne droite"),
+    # ('results-bottom', "Pages Résultats, base de page"),
+    # ('blog-top', "Pages Blog, haut de page"),
+    # ('blog-side', "Pages Blog, colonne droite"),
+    # ('blog-bottom', "Pages Blog, base de page"),
+    # ('shop-top', "Page Angulation, haut de page"),
+    # ('shop-bottom', "Page Angulation, base de page"),
+    # ('sponsors-top', "Page Mentors & Sponsors, haut de page"),
+    # ('sponsors-side', "Page Mentors & Sponsors, colonne droite"),
+    # ('sponsors-bottom', "Page Mentors & Sponsors, base de page"),
+)

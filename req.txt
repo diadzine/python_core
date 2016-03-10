@@ -5,3 +5,4 @@ ujson==1.33
 cloudinary==1.0.17
 Scrapy==1.0.3
 service-identity==14.0.0
+django-multiselectfield==0.1.3
