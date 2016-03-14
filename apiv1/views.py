@@ -4,13 +4,13 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
 )
 from rest_framework.permissions import (
-    IsAuthenticated,
     IsAuthenticatedOrReadOnly
 )
 
 from apiv1.serializers import (
     NewsSerializer,
     AdsSerializer,
+    AdsPlaceholdersSerializer,
     BloggersSerializer,
     BlogPostsSerializer,
     SkiclubsSerializer,
@@ -24,7 +24,7 @@ from django.utils import timezone
 from django.core.cache import cache
 from django.conf import settings
 from news.models import News
-from ads.models import Ads
+from ads.models import Ads, Placeholder
 from skiclubs.models import Skiclubs
 from pages.models import Pages
 from rankings.models import Races
@@ -103,6 +103,22 @@ class AdsCreateReadView(ListCreateAPIView):
                 ads = Ads.objects.all()
 
         return ads
+
+
+class AdsPlaceholdersReadView(ListAPIView):
+    serializer_class = AdsPlaceholdersSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
+    def get_queryset(self):
+        placeholders = getattr(settings, 'ADS_PLACEHOLDERS', None)
+
+        if placeholders is not None:
+            return [
+                Placeholder(code=code, label=label)
+                for code, label in placeholders
+            ]
+        else:
+            return []
 
 
 class AdsReadUpdateDeleteView(RetrieveUpdateDestroyAPIView):
