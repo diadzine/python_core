@@ -60,3 +60,10 @@ class Ads(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.name
+
+
+class Placeholder(object):
+
+    def __init__(self, code, label):
+        self.code = code
+        self.label = label
