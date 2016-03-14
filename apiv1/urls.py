@@ -46,6 +46,10 @@ urlpatterns = patterns(
         view=apiv1.views.AdsCreateReadView.as_view(),
         name='REST View'),
 
+    url(regex=r'^ads/placeholders/$',
+        view=apiv1.views.AdsPlaceholdersReadView.as_view(),
+        name='REST View'),
+
     url(regex=r'^ads/(?P<pk>[-\w]+)/$',
         view=apiv1.views.AdsReadUpdateDeleteView.as_view(),
         name='REST View'),
