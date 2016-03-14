@@ -27,6 +27,11 @@ class AdsSerializer(serializers.ModelSerializer):
                   'horizontal', 'vertical', 'square', 'date', )
 
 
+class AdsPlaceholdersSerializer(serializers.Serializer):
+    code = serializers.CharField(max_length=30)
+    label = serializers.CharField(max_length=100)
+
+
 class BloggersSerializer(serializers.ModelSerializer):
 
     class Meta:
