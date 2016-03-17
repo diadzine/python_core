@@ -4,22 +4,20 @@ import shutil
 
 from django.core.management.base import BaseCommand, CommandError
 
-# CURRENT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
-# BACKEND_DIR = os.path.abspath(os.path.join(CURRENT_DIR, os.pardir))
-# APP_DIR = os.path.abspath(os.path.join(BACKEND_DIR, os.pardir))
-# WEBAPPS_DIR = os.path.abspath(os.path.join(APP_DIR, os.pardir))
 
-# For production:
-CURRENT_DIR = '/home/tooski/webapps/python_core/python_core/rankings/'
-BACKEND_DIR = '/home/tooski/webapps/python_core/python_core/'
-APP_DIR = '/home/tooski/webapps/python_core/'
-WEBAPPS_DIR = '/home/tooski/webapps/'
+WEBAPPS_DIR = os.path.abspath(
+    os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        '..', '..', '..', '..'
+    )
+)
+RANKINGS_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', 'fis')
+)
+WEBSITE_DIR = os.path.join(WEBAPPS_DIR, 'website')
 
-# For dev:
-# CURRENT_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/rankings/'
-# BACKEND_DIR = '/home/seba-1511/Dropbox/Dev/tooski/python_core/'
-# APP_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
-# WEBAPPS_DIR = '/home/seba-1511/Dropbox/Dev/tooski/'
+FIS_RANKING_PATH = os.path.join(RANKINGS_DIR, 'ranking.json')
+WEBSITE_RANKING_PATH = os.path.join(WEBSITE_DIR, 'ranking.json')
 
 
 class Command(BaseCommand):
@@ -27,17 +25,17 @@ class Command(BaseCommand):
     help = 'Updates the table to the latest races, directly scrapped from the FIS website.'
 
     def handle(self, *args, **options):
-        os.system('rm ' + WEBAPPS_DIR + 'website/ranking.json')
-        os.system('rm ' + CURRENT_DIR + 'fis/ranking.json')
-# We get the leaderboard rankings and move them to the Apache server:
-        os.system('cd ' + CURRENT_DIR +
-                  '/fis/ && scrapy crawl ranking -o ranking.json -t json')
-        # Testing:
-        shutil.copy(CURRENT_DIR + 'fis/ranking.json',
-                    WEBAPPS_DIR + 'website/ranking.json')
-        # Server
-        # shutil.copy(CURRENT_DIR + '/fis/ranking.json',
-        #             WEBAPPS_DIR + '/website/ranking.json')
+        try:
+            os.remove(WEBSITE_RANKING_PATH)
+            os.remove(FIS_RANKING_PATH)
+        except OSError:
+            pass
 
-        # We should use the pipeline system of scrapy with the races.
-        os.system('cd ' + CURRENT_DIR + '/fis/ && scrapy crawl races')
+        # We get the leaderboard rankings and move them to the Apache server:
+        os.chdir(RANKINGS_DIR)
+        os.system('scrapy crawl ranking -o ranking.json -t json')
+        try:
+            shutil.copy(FIS_RANKING_PATH, WEBSITE_RANKING_PATH)
+        except IOError:
+            print 'File ranking.json is missing'
+        os.system('scrapy crawl races')
