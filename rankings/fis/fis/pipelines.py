@@ -6,6 +6,9 @@
 import os
 import sys
 from time import strptime, mktime
+from rankings.models import Races
+
+
 CURRENT_DIR = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
 SCRAPY_DIR = os.path.abspath(os.path.join(CURRENT_DIR, os.pardir))
 MODULE_DIR = os.path.abspath(os.path.join(SCRAPY_DIR, os.pardir))
@@ -20,8 +23,6 @@ sys.path.append(WEBAPPS_DIR + '/')
 # os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings'
 os.environ['DJANGO_SETTINGS_MODULE'] = 'python_core.settings_server'
 
-from rankings.models import Races
-
 
 class FisPipeline(object):
 
@@ -30,7 +31,12 @@ class FisPipeline(object):
             return item
 
         # Here we'll register the current item in the database:
-        race, created = Races.objects.get_or_create(raceId=int(item['id']))
+        try:
+            race = Races.objects.get(raceId=int(item['id']))
+        except Races.DoesNotExist:
+            race = Races()
+
+        race.raceId = int(item['id'])
         race.info = item['info'].strip()
         race.category = item['category'].strip()
         race.genre = item['genre'].strip()
@@ -38,7 +44,10 @@ class FisPipeline(object):
         race.location = item['location'].strip()
         race.discipline = item['discipline'].strip()
         race.raceId = item['id']
-        race.table = item['table'].strip()
+        race.table = item['table']
         race.date = mktime(strptime(item['date'].strip(), '%d.%m.%Y'))
-        race.save()
+        try:
+            race.save()
+        except:
+            import pdb; pdb.set_trace()
         return item

@@ -2,7 +2,7 @@
 import urlparse
 from scrapy.selector import Selector
 
-from scrapy.spider import BaseSpider
+from scrapy.spiders import Spider
 from scrapy.http import Request
 
 from fis.items import FisRanking
@@ -21,7 +21,7 @@ def board_section(url):
     return path_sections[-1]
 
 
-class RankingSpider(BaseSpider):
+class RankingSpider(Spider):
     # nom du crawler à spécifier lors de l'exécution
     name = 'ranking'
 

@@ -24,7 +24,7 @@ from django.conf import settings
 
 # Other imports
 from scrapy.selector import Selector
-from scrapy.spider import BaseSpider
+from scrapy.spiders import Spider
 from scrapy.http import Request
 
 from fis.items import FisRaces
@@ -35,7 +35,7 @@ import logging
 logger = logging.getLogger('spider')
 
 
-class MyCrawlerSpider(BaseSpider):
+class MyCrawlerSpider(Spider):
     # nom du crawler à spécifier lors de l'exécution
     name = 'races'
 
@@ -49,7 +49,7 @@ class MyCrawlerSpider(BaseSpider):
     jump = 3000
 
     def start_requests(self):
-        for i in xrange(self.max_newsid, self.max_newsid + self.jump):
+        for i in xrange(self.max_newsid - jump, self.max_newsid + jump):
             yield Request(
                 'http://data.fis-ski.com/dynamic/'
                 'results.html?sector=AL&raceid=%d' % i,
