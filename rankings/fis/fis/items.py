@@ -17,6 +17,19 @@ class FisRaces(Item):
     discipline = Field()
     table = Field()
 
+    # def __repr__(self):
+    #     """only print out few data after exiting the Pipeline"""
+    #     return repr({
+    #         "id": self["id"],
+    #         "category": self["category"],
+    #         "date": self["date"],
+    #         "discipline": self["discipline"],
+    #         "genre": self["genre"],
+    #         "info": self["info"],
+    #         "location": self["location"],
+    #         "link": self["link"],
+    #     })
+
 
 class FisRanking(Item):
     id = Field()
