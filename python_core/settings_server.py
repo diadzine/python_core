@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Note: Make sure that wsgi.py is referencing this file, in case of error 400.
 
