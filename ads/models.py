@@ -27,14 +27,10 @@ class AdsManager(models.Manager):
 
     def by_placeholder_and_category(self, placeholder, category):
         criteria = {
-            'placeholders__isnull': False,
             'placeholders__contains': placeholder,
             category: 1,
         }
         qs = super(AdsManager, self).get_queryset().filter(**criteria)
-
-        if not len(qs):
-            qs = self.by_category(category)
 
         return qs
 
