@@ -49,7 +49,7 @@ class MyCrawlerSpider(Spider):
     jump = 3000
 
     def start_requests(self):
-        for i in xrange(self.max_newsid - jump, self.max_newsid + jump):
+        for i in xrange(self.max_newsid - self.jump, self.max_newsid + self.jump):
             yield Request(
                 'http://data.fis-ski.com/dynamic/'
                 'results.html?sector=AL&raceid=%d' % i,
