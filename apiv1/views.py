@@ -43,7 +43,7 @@ class NewsCreateReadView(ListCreateAPIView):
 
     def get_queryset(self):
         now = timezone.now()
-        return News.objects.filter(date__lte=now).order_by('date').reverse()
+        return News.objects.filter(date__lte=now).exclude(mag=1).order_by('date').reverse()
 
 
 class MagCreateReadView(NewsCreateReadView):
